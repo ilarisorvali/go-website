@@ -1,0 +1,46 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base page styling */
+body {
+    font-family: Source Code Pro;
+    background-color: #27374D;
+    color: #3C3D37;
+    line-height: 1.6;
+    padding: 40px;
+}
+
+/* Main heading */
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: #ECDFCC;
+}
+
+/* Paragraphs */
+p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    max-width: 700px;
+    color: #DDE6ED;
+}
+
+/* Optional: center content on large screens */
+@media (min-width: 900px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1, p {
+        width: 100%;
+        max-width: 800px;
+        
+    }
+}
