@@ -1,45 +1,53 @@
-/* Reset some default browser styles */
+/* Basic reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/* Base page styling */
+/* Body styling */
 body {
-    font-family: Source Code Pro;
-    background-color: #27374D;
-    color: #ECDFCC;
+    background-color: #f0f2f5; /* light gray background */
+    color: #333; /* dark text for readability */
     line-height: 1.6;
-    padding: 40px;
+    text-align: center; /* center text by default */
+    padding: 20px;
 }
 
-/* Main heading */
-h1 {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    color: #ECDFCC;
+/* Header styling */
+header {
+    background-color: #4CAF50; /* green header */
+    color: white;
+    padding: 20px 0;
 }
 
-/* Paragraphs */
-p {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1rem;
-    margin-bottom: 12px;
-    max-width: 700px;
-    color: #ECDFCC;
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
 }
 
-/* Optional: center content on large screens */
-@media (min-width: 900px) {
-    body {
-        flex-direction: column;
-        align-items: center;
-    }
+header nav a:hover {
+    text-decoration: underline;
+}
 
-    h1, p {
-        width: 100%;
-        max-width: 800px;
-        
-    }
+/* Main content */
+main {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 8px;
+
+}
+
+/* Footer styling */
+footer {
+    margin-top: 40px;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    font-size: 0.9em;
 }
