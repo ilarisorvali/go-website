@@ -9,7 +9,7 @@
 body {
     font-family: Source Code Pro;
     background-color: #27374D;
-    color: #3C3D37;
+    color: #ECDFCC;
     line-height: 1.6;
     padding: 40px;
 }
@@ -27,13 +27,12 @@ p {
     font-size: 1rem;
     margin-bottom: 12px;
     max-width: 700px;
-    color: #DDE6ED;
+    color: #ECDFCC;
 }
 
 /* Optional: center content on large screens */
 @media (min-width: 900px) {
     body {
-        display: flex;
         flex-direction: column;
         align-items: center;
     }
