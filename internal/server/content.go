@@ -4,13 +4,6 @@ import (
 	"html/template"
 )
 
-type PageData struct {
-	Title   string
-	Posts   []Post
-	Post    Post
-	Recipes []Recipe
-}
-
 type Recipe struct {
 	Title                   string
 	Slug                    string
@@ -29,13 +22,27 @@ type Post struct {
 	Description string //description of post
 	Content     template.HTML
 	Tags        []string //tags of post
-	Number      int      //ordering number of post
 	Slug        string   //url slug of post
-	Visible     bool     //is post visible on the website boolean
 }
 
-func NewRecipe() Recipe {
-	var ret Recipe
+type Category struct {
+	Name  string
+	Pages []Post
+	Order int
+}
 
-	return ret
+type PostData struct {
+	Posts []Category
+}
+
+func NewPost() Post {
+	tags := []string{"testing", "go", "climbing"}
+
+	return Post{
+		Title:       "This is a test post.",
+		Description: "Test post description lors lars",
+		Content:     template.HTML("<h2> Hello world </h2>"),
+		Tags:        tags,
+		Slug:        "test-post",
+	}
 }

@@ -2,18 +2,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
+{{template "header" .}}
 <body>
 
-{{template "header" .}}
-
 <main>
-    <h2>Home Page</h2>
-    <p>This is the home page content.</p>
-    {{template "post" .}}
+    {{ template "home" . }}
 </main>
 
 {{ template "footer" . }}

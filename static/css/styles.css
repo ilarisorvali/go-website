@@ -1,53 +1,81 @@
-/* Basic reset */
+/* Reset & base */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Body styling */
+:root {
+  --bg: #0f1115;
+  --surface: #161922;
+  --text: #e6e6eb;
+  --muted: #9aa0a6;
+  --accent: #6ea8fe;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
-    background-color: #f0f2f5; /* light gray background */
-    color: #333; /* dark text for readability */
-    line-height: 1.6;
-    text-align: center; /* center text by default */
-    padding: 20px;
+  font-family: Ubuntu Mono;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
 }
 
-/* Header styling */
+/* Navbar */
+nav {
+  background: var(--surface);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1f2430;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 1rem;
+  font-size: 1.75rem;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Header */
 header {
-    background-color: #4CAF50; /* green header */
-    color: white;
-    padding: 20px 0;
+  padding: 4rem 1.5rem;
+  text-align: center;
 }
 
-header nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
-header nav a:hover {
-    text-decoration: underline;
+header p {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Main content */
 main {
-    margin: 40px auto;
-    padding: 20px;
-    max-width: 800px;
-    background-color: white;
-    border-radius: 8px;
-
+  padding: 3rem 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* Footer styling */
+/* Footer */
 footer {
-    margin-top: 40px;
-    padding: 10px 0;
-    background-color: #333;
-    color: white;
-    font-size: 0.9em;
+  margin-top: auto;
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.85rem;
+  border-top: 1px solid #1f2430;
 }
