@@ -1,5 +1,12 @@
-{{define "post"}}
+{{ define "post" }}
+    <div class="post">
+        <div class="metadata">
+            <strong> {{.Title}} </strong>
+            <span> {{ .Tags}} </span>
+        </div>
+        <pre><code>{{ .Content }}</code></pre>
 
-<h1> {{ .Title }}</h1>
+    </div>
 
 {{end}}
+

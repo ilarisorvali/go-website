@@ -23,7 +23,7 @@ var files = []string{
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
-	post, err := models.NewPost()
+	post := models.NewManyContentItems()
 
 	templates, err := template.ParseFiles(files...)
 	if err != nil {
@@ -46,7 +46,9 @@ func (app *application) posts(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
-	post, err := models.NewPost()
+	slug := r.PathValue("slug")
+	app.logger.Info(slug)
+	post := models.NewManyContentItems()
 
 	templates, err := template.ParseFiles(files...)
 	if err != nil {
@@ -54,7 +56,7 @@ func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = templates.ExecuteTemplate(w, "base", post)
+	err = templates.ExecuteTemplate(w, "post", post)
 	if err != nil {
 		app.serverError(w, r, err)
 	}
