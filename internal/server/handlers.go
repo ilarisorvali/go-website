@@ -1,40 +1,61 @@
 package server
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
+
+	"github.com/ilarisorvali/sorvali-systems/internal/models"
 )
 
-var templates = template.Must(template.ParseFiles(
+var files = []string{
 	"templates/base.html",
 	"templates/header.html",
 	"templates/footer.html",
-	"templates/post.html",
+	"templates/sidebar-left.html",
+
 	"templates/home.html",
-))
 
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "base")
+	"templates/posts_page.html",
+	"templates/post.html",
+
+	"templates/recipes.html",
 }
 
-func aboutHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Loers Laers..."))
-}
+func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
-func postsHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Loers Laers..."))
-}
+	post, err := models.NewPost()
 
-func postHandler(w http.ResponseWriter, r *http.Request) {
-	slug := r.PathValue("slug")
-	msg := fmt.Sprintf("Slug extracted: %s", slug)
-	w.Write([]byte(msg))
-}
-
-func RenderTemplate(w http.ResponseWriter, tmpl string) {
-	err := templates.ExecuteTemplate(w, tmpl, nil)
+	templates, err := template.ParseFiles(files...)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		app.serverError(w, r, err)
+		return
+	}
+
+	err = templates.ExecuteTemplate(w, "base", post)
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
+func (app *application) about(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Loers Laers..."))
+}
+
+func (app *application) posts(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Loers Laers..."))
+}
+
+func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
+	post, err := models.NewPost()
+
+	templates, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+
+	err = templates.ExecuteTemplate(w, "base", post)
+	if err != nil {
+		app.serverError(w, r, err)
 	}
 }

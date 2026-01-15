@@ -6,15 +6,21 @@ import (
 
 //All application routes are defined here
 
-func addRoutes(mux *http.ServeMux) {
+func (app *application) addRoutes() *http.ServeMux {
+
+	mux := http.NewServeMux()
+
 	//make static assets available via http.FileServer
 	mux.Handle("/static/", http.StripPrefix("/static",
 		http.FileServer(http.Dir("static/"))))
 
 	//{$} is a catch-all preventer in go servemux,
 	//ie. all unknown subtrees don't match to /
-	mux.HandleFunc("/{$}", homeHandler)
-	mux.HandleFunc("/about", aboutHandler)
-	mux.HandleFunc("/posts", postsHandler)
-	mux.HandleFunc("/posts/{slug}", postHandler)
+	mux.HandleFunc("/{$}", app.home)
+	mux.HandleFunc("/about", app.about)
+	mux.HandleFunc("/posts", app.posts)
+	mux.HandleFunc("/posts/{slug}", app.viewPost)
+
+	return mux
+
 }

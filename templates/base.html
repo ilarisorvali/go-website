@@ -2,14 +2,21 @@
 
 <!DOCTYPE html>
 <html lang="en">
-{{template "header" .}}
+
+{{ template "header" . }}
 <body>
 
 <main>
     {{ template "home" . }}
+    {{ template "post" . }}
+
 </main>
 
+
+{{ template "sidebar-left" .}}
 {{ template "footer" . }}
+
+
 
 </body>
 </html>
