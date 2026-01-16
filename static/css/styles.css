@@ -3,7 +3,7 @@ body {
     margin: 20px auto 50px;
     padding: 10px 15px;
     max-width: 800px;
-    
+
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -11,4 +11,56 @@ body {
     line-height: 1.5;
 
     hyphens: initial;
+}
+
+/* =========================
+   Color Variables
+   ========================= */
+
+:root {
+  /* Brand colors */
+  --color-primary: #2563eb;      /* blue */
+  --color-primary-hover: #1d4ed8;
+  --color-secondary: #7c3aed;    /* purple */
+  --color-secondary-hover: #6d28d9;
+
+  /* Neutral colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-gray-50:  #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2933;
+  --color-gray-900: #111827;
+
+  /* Text */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-400);
+  --color-text-inverse: var(--color-white);
+
+  /* Backgrounds */
+  --color-bg-page: var(--color-gray-50);
+  --color-bg-surface: var(--color-white);
+  --color-bg-muted: var(--color-gray-100);
+
+  /* Borders */
+  --color-border-light: var(--color-gray-200);
+  --color-border-default: var(--color-gray-300);
+  --color-border-dark: var(--color-gray-400);
+
+  /* Status colors */
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-error:   #dc2626;
+  --color-info:    #0ea5e9;
+
+  /* Focus & states */
+  --color-focus-ring: rgba(37, 99, 235, 0.5);
 }

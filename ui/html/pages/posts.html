@@ -1,0 +1,15 @@
+{{define "title"}}Posts{{end}}
+
+{{define "main"}}
+    <h1>Latest post:</h1>
+    {{if .Posts}}
+        {{range .Posts}}
+            <li>
+                <a href="{{.Slug}}">{{.Title}}</a>
+            </li>
+        {{end}}
+
+    {{else}}
+        <p>There's nothing to see here</p>
+    {{end}}
+{{end}}

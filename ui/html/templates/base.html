@@ -1,0 +1,12 @@
+{{define "base"}}
+<!doctype html>
+<html lang='en'>
+    {{template "header"}}
+    <body>
+        <main>
+            {{template "main" .}}
+        </main>
+        <footer>Powered by <a href='https://golang.org/'>Go</a></footer>
+    </body>
+    </html>
+{{ end }}
