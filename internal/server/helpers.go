@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"runtime/debug"
 
-	"github.com/ilarisorvali/sorvali-systems/internal/models"
+	models "github.com/ilarisorvali/sorvali-systems/internal/content"
 )
 
 func (app *application) render(w http.ResponseWriter, r *http.Request, status int, page string, data models.Pages) {

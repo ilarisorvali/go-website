@@ -3,7 +3,7 @@ package server
 import (
 	"net/http"
 
-	"github.com/ilarisorvali/sorvali-systems/internal/models"
+	models "github.com/ilarisorvali/sorvali-systems/internal/content"
 )
 
 var path string = "./markdown/"
