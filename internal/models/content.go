@@ -39,12 +39,20 @@ func ParseMDToPost(file []byte) (ContentItem, error) {
 	description, _ := metaData["Description"].(string)
 	slug, _ := metaData["Slug"].(string)
 
+	var ctype ContentType
+	if t, ok := metaData["Type"].(string); ok && t == "post" {
+		ctype = Post
+	} else {
+		ctype = Recipe
+	}
+
 	post := ContentItem{
 		Title:       title,
 		Description: description,
 		Slug:        slug,
 		Draft:       false,
 		Date:        time.Now(),
+		Kind:        ctype,
 		Content:     htmlTemplate,
 	}
 

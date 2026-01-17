@@ -23,7 +23,7 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 	}
 	// Write out the provided HTTP status code ('200 OK', '400 Bad Request' etc).
 	w.WriteHeader(status)
-	// Execute the 'page' template set
+	// Execute the 'page' template se
 	err := ts.ExecuteTemplate(w, "base", data)
 	if err != nil {
 		app.serverError(w, r, err)

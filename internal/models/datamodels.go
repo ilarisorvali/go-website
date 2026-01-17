@@ -5,12 +5,20 @@ import (
 	"time"
 )
 
+type ContentType string
+
+const (
+	Post   ContentType = "post"
+	Recipe ContentType = "recipe"
+)
+
 type ContentItem struct {
 	Title       string    //meta: title of post
 	Description string    //meta: description of post
 	Slug        string    //meta: url slug of post
 	Draft       bool      //is the ContentItem a draft, ie. is it visible
 	Date        time.Time //timestamp of post, not a real 'hard' timestamp
+	Kind        ContentType
 
 	Content template.HTML //parsed main markdown content
 
