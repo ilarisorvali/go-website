@@ -6,21 +6,26 @@ Kind: post
 ---
 
 
-# Building a website in go, a novice approach
+# Huutis mint
 
-This is a post loers laers :DDDDDDDDDD
+This is another post loers laers :DDDDDDDDDD
 asdasdasdasdasdasd
 asdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
 asdasdasdasdasdassad
 
 This site is made with [Go](https://go.dev)
 
-## Ayy lmao
+## Here is a code block lol
 
-steps
+```go
+package main
 
-1. asdasdasdsdas
-2. russian bias
+import "fmt"
+
+func main() {
+    fmt.Println("hello website")
+}
+```
 
 ## asdasdasdasd
 

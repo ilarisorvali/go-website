@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/yuin/goldmark"
+	highlighting "github.com/yuin/goldmark-highlighting/v2"
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/parser"
 )
@@ -18,6 +19,7 @@ func ParseMDToPost(file []byte) (ContentItem, error) {
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
 			meta.Meta,
+			highlighting.Highlighting,
 		),
 	)
 
@@ -46,24 +48,29 @@ func ParseMDToPost(file []byte) (ContentItem, error) {
 		ctype = Recipe
 	}
 
-	post := ContentItem{
+	meta := ContentItemMeta{
 		Title:       title,
 		Description: description,
 		Slug:        slug,
 		Draft:       false,
 		Date:        time.Now(),
-		Kind:        ctype,
-		Content:     htmlTemplate,
+		Type:        ctype,
+	}
+
+	post := ContentItem{
+		Meta:    meta,
+		Content: htmlTemplate,
 	}
 
 	return post, nil
 
 }
 
-func LoadMarkdownPosts(dirPath string) (Pages, error) {
+func LoadMarkdownFiles(dirPath string) (TemplateData, error) {
 	//Init an empty Pages struct as go can't do it implicitly
-	pages := Pages{
-		Posts: []ContentItem{},
+	data := TemplateData{
+		Item:  ContentItem{},
+		Items: []ContentItem{},
 	}
 
 	files, _ := os.ReadDir(dirPath)
@@ -77,17 +84,39 @@ func LoadMarkdownPosts(dirPath string) (Pages, error) {
 
 		md, err := os.ReadFile(fullPath)
 		if err != nil {
-			return pages, err
+			return data, err
 		}
 
-		post, err := ParseMDToPost(md)
+		item, err := ParseMDToPost(md)
 		if err != nil {
-			return pages, err
+			return data, err
 		}
 
-		pages.Posts = append(pages.Posts, post)
+		data.Items = append(data.Items, item)
 	}
 
-	return pages, nil
+	return data, nil
+
+}
+
+func LoadSingleMarkdownFile(filepath string) (TemplateData, error) {
+	data := TemplateData{
+		Item:  ContentItem{},
+		Items: []ContentItem{},
+	}
+
+	md, err := os.ReadFile(filepath)
+	if err != nil {
+		return data, err
+	}
+
+	item, err := ParseMDToPost(md)
+	if err != nil {
+		return data, err
+	}
+
+	data.Item = item
+
+	return data, nil
 
 }

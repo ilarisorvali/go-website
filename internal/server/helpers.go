@@ -1,6 +1,7 @@
 package server
 
 import (
+	"bytes"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -10,24 +11,33 @@ import (
 	models "github.com/ilarisorvali/sorvali-systems/internal/content"
 )
 
-func (app *application) render(w http.ResponseWriter, r *http.Request, status int, page string, data models.Pages) {
+func (app *application) render(w http.ResponseWriter, r *http.Request, status int, page string, data models.TemplateData) {
 
-	//Retrieve template from templatecache with page name,
-	//raises error if template does not exist
+	// Retrieve template from templatecache with page name,
+	// raises error if template does not exist
 	ts, ok := app.templateCache[page]
-
 	if !ok {
 		err := fmt.Errorf("the template %s does not exist", page)
 		app.serverError(w, r, err)
 		return
 	}
-	// Write out the provided HTTP status code ('200 OK', '400 Bad Request' etc).
-	w.WriteHeader(status)
-	// Execute the 'page' template se
-	err := ts.ExecuteTemplate(w, "base", data)
+
+	fmt.Println(data)
+
+	buf := new(bytes.Buffer)
+
+	// Write template to placeholder buffer instead of
+	// http.Responsewriter to catch ExecuteTemplate() errors
+	err := ts.ExecuteTemplate(buf, "base", data)
 	if err != nil {
 		app.serverError(w, r, err)
+		return
 	}
+
+	w.WriteHeader(status)
+
+	// Write contents of buffer to http.ResponseWriter
+	buf.WriteTo(w)
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {
@@ -45,17 +55,20 @@ func newTemplateCache() (map[string]*template.Template, error) {
 		// Extract the file name (like 'home.html')
 		name := filepath.Base(page)
 
-		// This essentially merges together individual pages with base.html and partials
-		// into many named templates that the router then calls based on the name of the template
-		files := []string{
-			"./ui/html/templates/base.html",
-			"./ui/html/partials/header.html",
-			page,
+		// Parse the base template
+		ts, err := template.ParseFiles("./ui/html/base.html")
+		if err != nil {
+			return nil, err
 		}
 
-		// Parse the files into a template set.
-		ts, err := template.ParseFiles(files...)
+		// ParseGlob() on current template set to add any partials
+		ts, err = ts.ParseGlob("./ui/html/partials/*.html")
+		if err != nil {
+			return nil, err
+		}
 
+		// ParseFiles() on current template set to add the current page template
+		ts, err = ts.ParseFiles(page)
 		if err != nil {
 			return nil, err
 		}

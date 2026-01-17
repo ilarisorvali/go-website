@@ -2,14 +2,16 @@
 
 {{define "main"}}
     <h1>Latest post:</h1>
-    {{if .Posts}}
-        {{range .Posts}}
+    {{if .Items}}
+        {{range .Items}}
+            {{with .Meta}}
             <li>
                 <a href="{{.Slug}}">{{.Title}}</a>
             </li>
+            {{end}}
         {{end}}
 
     {{else}}
-        <p>There's nothing to see here</p>
+        <p>There's nothing to see here.</p>
     {{end}}
 {{end}}

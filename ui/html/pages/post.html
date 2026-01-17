@@ -1,13 +1,13 @@
 {{ define "title"}} {{.Title}} {{end}}
 
 {{define "main"}}
-    <div class="post">
-        <div class="metadata">
-            <h1> {{ .Title }} </h1>
-        </div>
-        {{ .Content }}
 
-    </div>
+    {{with .Post}}
+        <h1>{{.Title}}</h1>
+        {{.Content}}
+    {{end}}
 
 {{end}}
+
+
 
