@@ -28,8 +28,6 @@ type ContentItem struct {
 }
 
 type TemplateData struct {
-	Item    ContentItem
-	Items   []ContentItem
-	Recipe  ContentItem
-	Recipes []ContentItem
+	Item  *ContentItem
+	Items map[string]*ContentItem
 }

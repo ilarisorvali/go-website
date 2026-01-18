@@ -6,36 +6,35 @@ import (
 	models "github.com/ilarisorvali/sorvali-systems/internal/content"
 )
 
-var postPath string = "./markdown"
-var homePath string = "./markdown/home/home.md"
-
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	data, _ := models.LoadSingleMarkdownFile(homePath)
+	post := app.contentCache["home"]
+
+	data := models.TemplateData{
+		Item: post,
+	}
 
 	app.render(w, r, http.StatusOK, "home.html", data)
 }
 
 func (app *application) posts(w http.ResponseWriter, r *http.Request) {
-	data, _ := models.LoadMarkdownFiles(postPath)
+
+	posts := app.contentCache
+
+	data := models.TemplateData{
+		Items: posts,
+	}
 
 	app.render(w, r, http.StatusOK, "posts.html", data)
 }
 
 func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
 	slug := r.PathValue("slug")
-	data, _ := models.LoadMarkdownFiles(postPath)
+	post := app.contentCache[slug]
 	app.logger.Debug(slug)
 
-	var found models.ContentItem
-
-	for _, item := range data.Items {
-		if item.Meta.Title == slug && !item.Meta.Draft {
-			found = item
-			break
-		}
+	data := models.TemplateData{
+		Item: post,
 	}
-
-	data.Item = found
 
 	app.render(w, r, http.StatusOK, "post.html", data)
 }

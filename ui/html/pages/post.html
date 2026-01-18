@@ -1,9 +1,9 @@
-{{ define "title"}} {{.Title}} {{end}}
+{{ define "title"}} {{.Item.Title}} {{end}}
 
 {{define "main"}}
-
-    {{with .Post}}
-        <h1>{{.Title}}</h1>
+    <a href="/posts">Back</a>
+    {{with .Item}}
+        <h1>{{.Meta.Title}}</h1>
         {{.Content}}
     {{end}}
 

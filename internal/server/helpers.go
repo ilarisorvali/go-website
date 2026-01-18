@@ -22,8 +22,6 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 		return
 	}
 
-	fmt.Println(data)
-
 	buf := new(bytes.Buffer)
 
 	// Write template to placeholder buffer instead of
@@ -40,8 +38,19 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 	buf.WriteTo(w)
 }
 
+// TODO add error handling
+func newContentCache() (map[string]*models.ContentItem, error) {
+	kind := models.Post
+	// init an empty map ot ac as the ContentItem cache
+	cache, err := models.LoadMarkdownFiles("./markdown", kind)
+	if err != nil {
+		return nil, err
+	}
+	return cache, nil
+}
+
 func newTemplateCache() (map[string]*template.Template, error) {
-	//Init map to act as the template cache
+	//Init an empty map to act as the template cache
 	cache := map[string]*template.Template{}
 
 	//Get slice of page filepath strings
