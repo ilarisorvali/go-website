@@ -3,6 +3,7 @@ Title: Test Title2
 Description: Test Description2
 Slug: test-post2
 Kind: post
+Date: 12.01.2024
 ---
 
 

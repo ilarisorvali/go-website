@@ -2,6 +2,8 @@
 Title: Building a website in go, a novice approach
 Description: Test Description
 Slug: test-post
+Kind: post
+Date: 25.1.2025
 ---
 
 This is a post loers laers :DDDDDDDDDD

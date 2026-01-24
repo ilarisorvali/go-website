@@ -18,7 +18,7 @@ type ContentItemMeta struct {
 	Slug        string      // meta: url slug of ContentItem
 	Draft       bool        // is the ContentItem a draft, ie. is it visible
 	Date        time.Time   // timestamp of ContentItem, not a real 'hard' timestamp
-	Type        ContentType // "type" of ContentItem Post/Recipe
+	Kind        ContentType // "type" of ContentItem Post/Recipe
 }
 
 type ContentItem struct {

@@ -2,6 +2,4 @@
 Slug: home
 ---
 
-# Hello, I'm Ilari and this is my website built with Go templates
-
-jada jdadasdasdasdasd saisko tästä jonkinlaisen kappaleen lol
+From the moment I understood the weakness of my flesh.. it disgusted me. I craved the strength and certainty of steel. I aspired to the purity of the blessed machine. Your kind cling to your flesh as if it will not decay and fail you. One day the crude biomass that you call a temple will wither and you'll beg my kind to save you. But I am already saved. For the machine is immortal.

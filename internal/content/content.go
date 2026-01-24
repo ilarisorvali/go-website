@@ -10,6 +10,7 @@ import (
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting/v2"
 	meta "github.com/yuin/goldmark-meta"
+	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 )
 
@@ -18,6 +19,8 @@ import (
 func ParseMDToContent(file []byte) (*ContentItem, error) {
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
+			extension.GFM,
+			extension.Footnote,
 			meta.Meta,
 			highlighting.NewHighlighting(
 				highlighting.WithStyle("dracula"),
@@ -37,11 +40,19 @@ func ParseMDToContent(file []byte) (*ContentItem, error) {
 	metaData := meta.Get(context)
 	htmlTemplate := template.HTML(buf.String())
 
+	// This is a template for Go to use in parsing the date from markdown metadata
+	// See https://pkg.go.dev/time#Parse
+	// It's weird.
+	const dateTemplate = "02.1.2006"
+
 	//Extract concrete values from metadata
 	//If value doesn't exist in metadata, init as zero value ""
 	title, _ := metaData["Title"].(string)
 	description, _ := metaData["Description"].(string)
 	slug, _ := metaData["Slug"].(string)
+
+	datestring, _ := metaData["Date"].(string)
+	date, _ := time.Parse(dateTemplate, datestring)
 
 	var ctype ContentType
 	if t, ok := metaData["Type"].(string); ok && t == "post" {
@@ -55,8 +66,8 @@ func ParseMDToContent(file []byte) (*ContentItem, error) {
 		Description: description,
 		Slug:        slug,
 		Draft:       false,
-		Date:        time.Now(),
-		Type:        ctype,
+		Date:        date,
+		Kind:        ctype,
 	}
 
 	post := ContentItem{
@@ -70,7 +81,7 @@ func ParseMDToContent(file []byte) (*ContentItem, error) {
 
 // TODO add error handling
 func LoadContentFiles(dirPath string, kind ContentType) (map[string]*ContentItem, error) {
-	//Init an empty Pages struct as go can't do it implicitly
+	//Init an empty map
 	data := map[string]*ContentItem{}
 
 	files, _ := os.ReadDir(dirPath)
@@ -82,17 +93,22 @@ func LoadContentFiles(dirPath string, kind ContentType) (map[string]*ContentItem
 
 		fullPath := filepath.Join(dirPath, file.Name())
 
+		// Read	file
 		md, err := os.ReadFile(fullPath)
 		if err != nil {
 			return data, err
 		}
 
+		// Parse file to ContentItem
 		item, err := ParseMDToContent(md)
 		if err != nil {
 			return data, err
 		}
 
+		// TODO Only add to cache the requested kind
+
 		data[item.Meta.Slug] = item
+
 	}
 
 	return data, nil

@@ -3,7 +3,7 @@ Title: This is a long markdown file showcasing features
 Description: This is a test description
 Slug: long-post
 Kind: post
-
+Date: 27.04.2023
 ---
 
 
@@ -57,6 +57,16 @@ Indented code
     line 1 of code
     line 2 of code
     line 3 of code
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("hello website")
+}
+```
 
 ## Links
 

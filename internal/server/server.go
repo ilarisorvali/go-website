@@ -29,14 +29,14 @@ func RunServer() error {
 		os.Exit(1)
 	}
 	// init content cache for application, check for errors
-	contentCache, err := newContentCache(models.Post)
+	postCache, err := newContentCache(models.Post)
 	if err != nil {
 		logger.Error(err.Error())
 		os.Exit(1)
 	}
 
 	// init content cache for application, check for errors
-	recipeCache, err := newContentCache(models.Post)
+	recipeCache, err := newContentCache(models.Recipe)
 	if err != nil {
 		logger.Error(err.Error())
 		os.Exit(1)
@@ -45,7 +45,7 @@ func RunServer() error {
 	app := &application{
 		logger:        logger,
 		templateCache: templateCache,
-		postCache:     contentCache,
+		postCache:     postCache,
 		recipeCache:   recipeCache,
 	}
 
