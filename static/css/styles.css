@@ -1,49 +1,9 @@
-/* Base reset */
-* {
-    box-sizing: border-box;
-}
+
+
 
 body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.6;
-    background: #f9f9f9;
-    color: #222;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
-/* Layout */
-main {
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 0 1rem;
-    background: #fff;
-}
 
-/* Headings */
-h1 {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-}
-
-/* Post list */
-li {
-    list-style: none;
-    margin: 0.5rem 0;
-}
-
-a {
-    color: #0066cc;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    margin: 2rem 0;
-    font-size: 0.9rem;
-    color: #666;
-}

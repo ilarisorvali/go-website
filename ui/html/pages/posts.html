@@ -1,6 +1,7 @@
 {{define "title"}}Posts{{end}}
 
 {{define "main"}}
+    <div class="posts">
     <h1>Latest post:</h1>
     {{if .Items}}
         {{range .Items}}
@@ -14,4 +15,5 @@
     {{else}}
         <p>There's nothing to see here.</p>
     {{end}}
+    </div>
 {{end}}

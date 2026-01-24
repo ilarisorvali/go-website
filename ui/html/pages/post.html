@@ -1,12 +1,15 @@
 {{ define "title"}} {{.Item.Title}} {{end}}
 
 {{define "main"}}
+<div class="post">
     <a href="/posts">Back</a>
     {{with .Item}}
         <h1>{{.Meta.Title}}</h1>
-        {{.Content}}
+        <body class="bg-gray-100 text-gray-900">
+            {{.Content}}
+        </body>
     {{end}}
-
+</div>
 {{end}}
 
 

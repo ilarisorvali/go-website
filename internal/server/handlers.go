@@ -6,19 +6,17 @@ import (
 	models "github.com/ilarisorvali/sorvali-systems/internal/content"
 )
 
-func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	post := app.contentCache["home"]
+const homePath = "./markdown/static/home.md"
 
-	data := models.TemplateData{
-		Item: post,
-	}
+func (app *application) home(w http.ResponseWriter, r *http.Request) {
+	data, _ := models.LoadSingleFile(homePath)
 
 	app.render(w, r, http.StatusOK, "home.html", data)
 }
 
 func (app *application) posts(w http.ResponseWriter, r *http.Request) {
 
-	posts := app.contentCache
+	posts := app.postCache
 
 	data := models.TemplateData{
 		Items: posts,
@@ -29,7 +27,7 @@ func (app *application) posts(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
 	slug := r.PathValue("slug")
-	post := app.contentCache[slug]
+	post := app.postCache[slug]
 	app.logger.Debug(slug)
 
 	data := models.TemplateData{

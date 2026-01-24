@@ -4,9 +4,6 @@ Description: Test Description
 Slug: test-post
 ---
 
-
-### Building a website in go, a novice approach
-
 This is a post loers laers :DDDDDDDDDD
 asdasdasdasdasdasd
 asdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
@@ -18,8 +15,9 @@ This site is made with [Go](https://go.dev)
 
 steps
 
-1. asdasdasdsdas
-2. russian bias
+- asdasdasdsdas
+- russian bias
+
 
 ### asdasdasdasd
 

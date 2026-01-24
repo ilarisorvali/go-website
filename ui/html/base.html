@@ -3,9 +3,12 @@
 <html lang='en'>
     {{template "header"}}
     <body>
+        <div>
         <main>
+            {{template "sidebar"}}
             {{template "main" .}}
         </main>
+        </div>
         <footer>Powered by <a href='https://golang.org/'>Go</a></footer>
     </body>
     </html>

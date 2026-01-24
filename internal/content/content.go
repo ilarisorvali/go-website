@@ -15,11 +15,13 @@ import (
 
 // Parses a post markdown file into metadata and HTML
 // Returns metadata and HTML in a Post struct
-func ParseMDToPost(file []byte) (*ContentItem, error) {
+func ParseMDToContent(file []byte) (*ContentItem, error) {
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
 			meta.Meta,
-			highlighting.Highlighting,
+			highlighting.NewHighlighting(
+				highlighting.WithStyle("dracula"),
+			),
 		),
 	)
 
@@ -66,7 +68,8 @@ func ParseMDToPost(file []byte) (*ContentItem, error) {
 
 }
 
-func LoadMarkdownFiles(dirPath string, kind ContentType) (map[string]*ContentItem, error) {
+// TODO add error handling
+func LoadContentFiles(dirPath string, kind ContentType) (map[string]*ContentItem, error) {
 	//Init an empty Pages struct as go can't do it implicitly
 	data := map[string]*ContentItem{}
 
@@ -84,7 +87,7 @@ func LoadMarkdownFiles(dirPath string, kind ContentType) (map[string]*ContentIte
 			return data, err
 		}
 
-		item, err := ParseMDToPost(md)
+		item, err := ParseMDToContent(md)
 		if err != nil {
 			return data, err
 		}
@@ -94,4 +97,20 @@ func LoadMarkdownFiles(dirPath string, kind ContentType) (map[string]*ContentIte
 
 	return data, nil
 
+}
+
+// TODO add error handling
+func LoadSingleFile(filepath string) (TemplateData, error) {
+	data := TemplateData{}
+
+	file, _ := os.ReadFile(filepath)
+
+	item, err := ParseMDToContent(file)
+	if err != nil {
+		return data, err
+	}
+
+	data.Item = item
+
+	return data, nil
 }

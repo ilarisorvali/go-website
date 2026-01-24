@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"html/template"
 	"log/slog"
 	"net/http"
@@ -13,7 +12,8 @@ import (
 type application struct {
 	logger        *slog.Logger
 	templateCache map[string]*template.Template
-	contentCache  map[string]*models.ContentItem
+	postCache     map[string]*models.ContentItem
+	recipeCache   map[string]*models.ContentItem
 }
 
 func RunServer() error {
@@ -29,17 +29,24 @@ func RunServer() error {
 		os.Exit(1)
 	}
 	// init content cache for application, check for errors
-	contentCache, err := newContentCache()
+	contentCache, err := newContentCache(models.Post)
 	if err != nil {
 		logger.Error(err.Error())
 		os.Exit(1)
 	}
-	fmt.Println(contentCache)
+
+	// init content cache for application, check for errors
+	recipeCache, err := newContentCache(models.Post)
+	if err != nil {
+		logger.Error(err.Error())
+		os.Exit(1)
+	}
 
 	app := &application{
 		logger:        logger,
 		templateCache: templateCache,
-		contentCache:  contentCache,
+		postCache:     contentCache,
+		recipeCache:   recipeCache,
 	}
 
 	mux := app.addRoutes()
