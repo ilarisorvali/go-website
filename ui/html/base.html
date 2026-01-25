@@ -1,16 +1,13 @@
 {{define "base"}}
 <!doctype html>
 <html lang='en'>
-    {{template "header"}}
     <body>
-        <div>
-        <main>
-            {{template "sidebar"}}
-            {{template "main" .}}
-        </main>
+        <div class="container">
+            {{template "header"}}
+          <div class="content">
+            {{template "main"}}
+          </div>
         </div>
-        <footer>Powered by <a href='https://golang.org/'>Go</a></footer>
     </body>
-        
-    </html>
-{{ end }}
+</html>
+{{end}}
