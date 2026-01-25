@@ -1,13 +1,105 @@
+:root {
+  --background-color: #2e3440;
+  --primary-text-color: #e5e9f0;
+  --primary-link-color: #d08770;
+}
+
+.onest-font {
+  font-family: "Onest", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.source-code-pro-font {
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+font-family: Onest, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+}
+
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--background-color);
+}
+
+a {
+    color: var(--primary-link-color);
+}
+
 .container {
+    min-height: 100vh;
+    max-width: 1200px; 
+    margin: 0 auto;
+    
     display: grid;
-    grid-template-rows: 75px auto auto 75px;
-    grid-template-columns: 350px auto auto;
-    grid-template-areas: "header  header  header   "
-                         "sidebar content content  "
-                         "sidebar content content  "
-                         "footer  footer  footer   ";
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+        "header  header"
+        "sidebar navbar"
+        "sidebar content"
+        "footer  footer";
+    column-gap: 1rem;
+    
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+
+}
+
+.navbar {
+    grid-area: navbar;
+    font-size: 30px;
 }
 
 .content {
     grid-area: content;
+    font-size: 18px;
+    max-width: 800px;
+
+}
+
+
+
+.content {
+  padding-top: 1.5rem;
+}
+
+.footer {
+    grid-area: footer;
+    margin: inherit; 
+
+}
+
+img {
+    width: 100%;
+    max-width: 800px;
+}
+
+pre {
+    padding: 0.5em;
+    margin: 0.5em;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+code {
+    font-family: Source Code Pro;
+}
+
+header {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,0 +1,23 @@
+{{define "title"}}Recipes{{end}}
+
+{{define "main"}}
+
+    <div class="recipes">
+      <p>This is a collection of different recipes and cooking knowledge tidbits.</p>
+      <p></p><strong>They are provided "as is" without warranty of any kind.</strong></p>
+      
+
+      {{if .Items}}
+          {{range .Items}}
+            {{with .Meta}}
+              <li>
+                <a href="{{.Slug}}">{{.Title}}</a> 
+              </li>
+            {{end}}
+      {{end}}
+
+      {{else}}
+        <p>There's nothing to see here.</p>
+      {{end}}
+    </div>
+{{end}}

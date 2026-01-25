@@ -1,8 +1,10 @@
 {{ define "title"}} {{.Item.Title}} {{end}}
 
 {{define "main"}}
+{{template "sidebar"}}
 <div class="post">
     <a href="/posts">Back</a>
+    
     {{with .Item}}
         <h1>{{.Meta.Title}}</h1>
         <body class="bg-gray-100 text-gray-900">
