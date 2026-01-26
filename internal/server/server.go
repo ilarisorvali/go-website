@@ -12,8 +12,7 @@ import (
 type application struct {
 	logger        *slog.Logger
 	templateCache map[string]*template.Template
-	postCache     map[string]*models.ContentItem
-	recipeCache   map[string]*models.ContentItem
+	contentCache  map[string]*models.ContentItem
 }
 
 func RunServer() error {
@@ -29,14 +28,7 @@ func RunServer() error {
 		os.Exit(1)
 	}
 	// init content cache for application, check for errors
-	postCache, err := newContentCache(models.Post)
-	if err != nil {
-		logger.Error(err.Error())
-		os.Exit(1)
-	}
-
-	// init content cache for application, check for errors
-	recipeCache, err := newContentCache(models.Recipe)
+	cache, err := newContentCache()
 	if err != nil {
 		logger.Error(err.Error())
 		os.Exit(1)
@@ -45,8 +37,7 @@ func RunServer() error {
 	app := &application{
 		logger:        logger,
 		templateCache: templateCache,
-		postCache:     postCache,
-		recipeCache:   recipeCache,
+		contentCache:  cache,
 	}
 
 	mux := app.addRoutes()

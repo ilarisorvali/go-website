@@ -2,24 +2,24 @@
 Title: Building a website in go, a novice approach
 Description: Test Description
 Slug: test-post
-Kind: post
 Date: 25.1.2025
+Tags: [post, major]
 ---
 
-This is a post loers laers :DDDDDDDDDD
+# This is a post loers laers :DDDDDDDDDD
+
 asdasdasdasdasdasd
 asdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
 asdasdasdasdasdassad
 
 This site is made with [Go](https://go.dev)
 
-### Ayy lmao
+## Ayy lmao
 
 steps
 
 - asdasdasdsdas
 - russian bias
-
 
 ### asdasdasdasd
 

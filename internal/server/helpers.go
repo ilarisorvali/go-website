@@ -39,10 +39,10 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 }
 
 // TODO add error handling
-func newContentCache(kind models.ContentType) (map[string]*models.ContentItem, error) {
+func newContentCache() (map[string]*models.ContentItem, error) {
 	// kind indicates what kind of content to load ie. Post or Recipe
 	// init an empty map ot ac as the ContentItem cache
-	cache, err := models.LoadContentFiles("./markdown", kind)
+	cache, err := models.LoadContentFiles("./markdown")
 	if err != nil {
 		return nil, err
 	}

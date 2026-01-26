@@ -2,16 +2,17 @@ package models
 
 import (
 	"bytes"
+	"fmt"
 	"html/template"
 	"os"
 	"path/filepath"
-	"time"
 
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting/v2"
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
+	"gopkg.in/yaml.v2"
 )
 
 // Parses a post markdown file into metadata and HTML
@@ -36,51 +37,39 @@ func ParseMDToContent(file []byte) (*ContentItem, error) {
 		panic(err)
 	}
 
-	//Extract metadata from MD file
+	//Get the yaml metadata part from MD file
 	metaData := meta.Get(context)
 	htmlTemplate := template.HTML(buf.String())
 
+	//Extract metadata from MD file
+	metaBuf, err := yaml.Marshal(metaData)
+	if err != nil {
+		return nil, err
+	}
+
+	//Unmarshal metadata into Frontmatter struct
+	var meta FrontMatter
+	if err := yaml.Unmarshal(metaBuf, &meta); err != nil {
+		return nil, err
+	}
+
 	// This is a template for Go to use in parsing the date from markdown metadata
 	// See https://pkg.go.dev/time#Parse
+	// It has to be exactly 02.01.2006 here
 	// It's weird.
 	const dateTemplate = "02.1.2006"
 
-	//Extract concrete values from metadata
-	//If value doesn't exist in metadata, init as zero value ""
-	title, _ := metaData["Title"].(string)
-	description, _ := metaData["Description"].(string)
-	slug, _ := metaData["Slug"].(string)
-
-	datestring, _ := metaData["Date"].(string)
-	date, _ := time.Parse(dateTemplate, datestring)
-
-	var ctype ContentType
-	if t, ok := metaData["Type"].(string); ok && t == "post" {
-		ctype = Post
-	} else {
-		ctype = Recipe
-	}
-
-	meta := ContentItemMeta{
-		Title:       title,
-		Description: description,
-		Slug:        slug,
-		Draft:       false,
-		Date:        date,
-		Kind:        ctype,
-	}
-
-	post := ContentItem{
+	item := ContentItem{
 		Meta:    meta,
 		Content: htmlTemplate,
 	}
 
-	return &post, nil
+	return &item, nil
 
 }
 
 // TODO add error handling
-func LoadContentFiles(dirPath string, kind ContentType) (map[string]*ContentItem, error) {
+func LoadContentFiles(dirPath string) (map[string]*ContentItem, error) {
 	//Init an empty map
 	data := map[string]*ContentItem{}
 
@@ -129,4 +118,44 @@ func LoadSingleFile(filepath string) (TemplateData, error) {
 	data.Item = item
 
 	return data, nil
+}
+
+// tagSet makes a fake "set" out of slices because go doesn't have one implemented built in
+// keys are the tags and values are empty structs (that take up zero space)
+//
+//	map[string]struct{}{
+//		"major": {},
+//		"minor": {},
+//	}
+func tagSet(tags []string) map[string]struct{} {
+	set := make(map[string]struct{}, len(tags))
+	for _, tag := range tags {
+		set[tag] = struct{}{}
+	}
+	return set
+}
+
+// Filter a map[string]*ContentItem by ContentItem tags.
+// Makes use of the tagset function for ~speed~
+func FilterByTags(items map[string]*ContentItem, tags []string) map[string]*ContentItem {
+	required := tagSet(tags)
+	result := make(map[string]*ContentItem)
+
+	for slug, item := range items {
+		itemTags := tagSet(item.Meta.Tags)
+		fmt.Println(itemTags)
+		match := true
+		for tag := range required {
+			if _, ok := itemTags[tag]; !ok {
+				match = false
+				break
+			}
+		}
+
+		if match {
+			result[slug] = item
+		}
+	}
+
+	return result
 }
