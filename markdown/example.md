@@ -2,7 +2,7 @@
 Title: Building a website in go, a novice approach
 Description: Test Description
 Slug: test-post
-Date: 25.1.2025
+Date: 25.01.2025
 Tags: [post, major]
 ---
 

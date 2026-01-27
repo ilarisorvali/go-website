@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"html/template"
 	"time"
 )
@@ -8,12 +9,12 @@ import (
 // metadata of a post
 // uses struct tags for marshaling purposes in markdown parsing
 type FrontMatter struct {
-	Title       string    `yaml:"title"`
-	Description string    `yaml:"description"`
-	Slug        string    `yaml:"slug"`
-	Draft       bool      `yaml:"tags"`
-	Date        time.Time `yaml:"date"`
-	Tags        []string  `yaml:"tags"`
+	Title       string                `yaml:"Title"`
+	Description string                `yaml:"Description"`
+	Slug        string                `yaml:"Slug"`
+	Draft       bool                  `yaml:"Draft"`
+	Date        FrontMatterCustomDate `yaml:"Date"`
+	Tags        []string              `yaml:"Tags"`
 }
 
 // single item of content for website,
@@ -29,4 +30,35 @@ type ContentItem struct {
 type TemplateData struct {
 	Item  *ContentItem
 	Items map[string]*ContentItem
+}
+
+// Struct for custom date formatting when marshaling frontmatter
+type FrontMatterCustomDate struct {
+	time.Time
+}
+
+// This is a template for Go to use in parsing the date from markdown metadata
+// See https://pkg.go.dev/time#Parse
+// It has to be exactly 02.01.2006 here
+// It's weird.
+const dateTemplate = "02.01.2006"
+
+// Custom date formatting for yaml marshaling with frontmatter
+func (d *FrontMatterCustomDate) UnmarshalYAML(unmarshal func(any) error) error {
+	var raw string
+	if err := unmarshal(&raw); err != nil {
+		return err
+	}
+
+	if raw == "" {
+		return nil
+	}
+
+	t, err := time.Parse("02.01.2006", raw)
+	if err != nil {
+		return fmt.Errorf("invalid date %q (expected %s)", raw, dateTemplate)
+	}
+
+	d.Time = t
+	return nil
 }

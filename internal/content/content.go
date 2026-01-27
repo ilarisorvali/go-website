@@ -7,12 +7,11 @@ import (
 	"os"
 	"path/filepath"
 
+	fm "github.com/adrg/frontmatter"
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting/v2"
-	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
-	"gopkg.in/yaml.v2"
 )
 
 // Parses a post markdown file into metadata and HTML
@@ -22,42 +21,30 @@ func ParseMDToContent(file []byte) (*ContentItem, error) {
 		goldmark.WithExtensions(
 			extension.GFM,
 			extension.Footnote,
-			meta.Meta,
 			highlighting.NewHighlighting(
 				highlighting.WithStyle("dracula"),
 			),
 		),
 	)
 
+	//Get the yaml metadata part from MD file
+	//Unmarshal metadata into Frontmatter struct
+	//TODO mabe use goldmark frontmatter extension
+	var meta FrontMatter
+
+	rest, err := fm.Parse(bytes.NewReader(file), &meta)
+	if err != nil {
+		return nil, err
+	}
+
+	// Parse the rest of the file into html content
 	var buf bytes.Buffer
 	context := parser.NewContext()
 
-	err := markdown.Convert(file, &buf, parser.WithContext(context))
-	if err != nil {
-		panic(err)
+	if err := markdown.Convert(rest, &buf, parser.WithContext(context)); err != nil {
+		return nil, err
 	}
-
-	//Get the yaml metadata part from MD file
-	metaData := meta.Get(context)
 	htmlTemplate := template.HTML(buf.String())
-
-	//Extract metadata from MD file
-	metaBuf, err := yaml.Marshal(metaData)
-	if err != nil {
-		return nil, err
-	}
-
-	//Unmarshal metadata into Frontmatter struct
-	var meta FrontMatter
-	if err := yaml.Unmarshal(metaBuf, &meta); err != nil {
-		return nil, err
-	}
-
-	// This is a template for Go to use in parsing the date from markdown metadata
-	// See https://pkg.go.dev/time#Parse
-	// It has to be exactly 02.01.2006 here
-	// It's weird.
-	const dateTemplate = "02.1.2006"
 
 	item := ContentItem{
 		Meta:    meta,
