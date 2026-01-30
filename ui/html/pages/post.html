@@ -1,18 +1,14 @@
 {{ define "title"}} {{.Item.Meta.Title}} {{end}}
 
-{{define "main"}}
-{{template "sidebar"}}
-<div class="post">
-    <a href="/posts">Back</a>
+{{define "content"}}
+<a href="/posts">Back to posts</a>
     
+<div>
     {{with .Item}}
         <h1>{{.Meta.Title}}</h1>
-        <body class="bg-gray-100 text-gray-900">
-            {{.Content}}
-        </body>
+            <article class="prose-slate prose-lg max-w-none list-inside">
+                  {{.Content}}
+            </article>
     {{end}}
-</div>
+    </div>
 {{end}}
-
-
-

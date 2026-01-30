@@ -1,8 +1,7 @@
 {{define "title"}}Posts{{end}}
 
-{{define "main"}}
+{{define "content"}}
 
-    <div class="latest-post">
         <h1>Latest post:</h1>
             {{if .Item}}
                 {{with .Item.Meta}}
@@ -12,9 +11,6 @@
                 <p>There's nothing to see here.</p>
             {{end}}
 
-    </div>
-
-    <div class="posts">
     <h1>Older posts:</h1>
     {{if .Items}}
         {{range .Items}}
@@ -28,5 +24,4 @@
     {{else}}
         <p>There's nothing to see here.</p>
     {{end}}
-    </div>
 {{end}}

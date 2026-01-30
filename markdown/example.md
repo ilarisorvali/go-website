@@ -6,8 +6,6 @@ Date: 25.01.2025
 Tags: [post, major]
 ---
 
-# This is a post loers laers :DDDDDDDDDD
-
 asdasdasdasdasdasd
 asdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
 asdasdasdasdasdassad
@@ -20,6 +18,50 @@ steps
 
 - asdasdasdsdas
 - russian bias
+
+```go
+func newTemplateCache() (map[string]*template.Template, error) {
+	//Init an empty map to act as the template cache
+	cache := map[string]*template.Template{}
+
+	//Get slice of page filepath strings
+	pages, err := filepath.Glob("./ui/html/pages/*.html")
+
+	if err != nil {
+		return nil, err
+	}
+
+	for _, page := range pages {
+		// Extract the file name (like 'home.html')
+		name := filepath.Base(page)
+
+		// Parse the base template
+		ts, err := template.ParseFiles("./ui/html/base.html")
+		if err != nil {
+			return nil, err
+		}
+
+		// ParseGlob() on current template set to add any partials
+		ts, err = ts.ParseGlob("./ui/html/partials/*.html")
+		if err != nil {
+			return nil, err
+		}
+
+		// ParseFiles() on current template set to add the current page template
+		ts, err = ts.ParseFiles(page)
+		if err != nil {
+			return nil, err
+		}
+
+		// Add the template set to the map, using the name of the page
+		// (like 'home.tmpl') as the key.
+		cache[name] = ts
+	}
+	// Return the map.
+	return cache, nil
+}
+```
+
 
 ### asdasdasdasd
 
