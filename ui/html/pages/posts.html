@@ -4,7 +4,14 @@
 
     <div class="latest-post">
         <h1>Latest post:</h1>
-            <p>implement this thing already</p>
+            {{if .Item}}
+                {{with .Item.Meta}}
+                <a href="{{.Slug}}">{{.Title}}</a> 
+                {{end}}
+            {{else}}
+                <p>There's nothing to see here.</p>
+            {{end}}
+
     </div>
 
     <div class="posts">

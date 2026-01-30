@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 
 	models "github.com/ilarisorvali/sorvali-systems/internal/content"
@@ -16,20 +15,18 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) posts(w http.ResponseWriter, r *http.Request) {
-
-	posts := app.contentCache
+	tags := []string{"post"}
 
 	data := models.TemplateData{
-		Items: posts,
+		Item:  app.LatestPostFromCache(tags),
+		Items: app.FilterCacheByTags(tags),
 	}
-
 	app.render(w, r, http.StatusOK, "posts.html", data)
 }
 
 func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
 	slug := r.PathValue("slug")
 	post := app.contentCache[slug]
-	app.logger.Debug(slug)
 
 	data := models.TemplateData{
 		Item: post,
@@ -41,10 +38,8 @@ func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
 func (app *application) recipes(w http.ResponseWriter, r *http.Request) {
 	tags := []string{"recipe"}
 
-	fmt.Println(models.FilterByTags(app.contentCache, tags))
-
 	data := models.TemplateData{
-		Items: models.FilterByTags(app.contentCache, tags),
+		Items: app.FilterCacheByTags(tags),
 	}
 	app.render(w, r, http.StatusOK, "recipes.html", data)
 }

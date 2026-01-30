@@ -43,7 +43,7 @@ a {
     margin: 0 auto;
     
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto;
     grid-template-rows: auto auto 1fr auto;
     grid-template-areas:
         "header"
@@ -52,27 +52,24 @@ a {
         "footer";
     column-gap: 1rem;
     
+    font-size: 16px;
     background-color: var(--background-color);
-    color: var(--primary-text-color);
+    color: var(--primary-text-color);   
 
 }
 
 .navbar {
     grid-area: navbar;
     font-size: 30px;
+    margin: inherit;
 }
 
 .content {
     grid-area: content;
-    font-size: 18px;
+    font-size: 1em;
     max-width: 800px;
-
-}
-
-
-
-.content {
-  padding-top: 1.5rem;
+    padding-top: 1rem;
+    margin: inherit;
 }
 
 .footer {

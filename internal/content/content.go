@@ -2,7 +2,6 @@ package models
 
 import (
 	"bytes"
-	"fmt"
 	"html/template"
 	"os"
 	"path/filepath"
@@ -81,8 +80,7 @@ func LoadContentFiles(dirPath string) (map[string]*ContentItem, error) {
 			return data, err
 		}
 
-		// TODO Only add to cache the requested kind
-
+		//add to cache with slug as key
 		data[item.Meta.Slug] = item
 
 	}
@@ -105,44 +103,4 @@ func LoadSingleFile(filepath string) (TemplateData, error) {
 	data.Item = item
 
 	return data, nil
-}
-
-// tagSet makes a fake "set" out of slices because go doesn't have one implemented built in
-// keys are the tags and values are empty structs (that take up zero space)
-//
-//	map[string]struct{}{
-//		"major": {},
-//		"minor": {},
-//	}
-func tagSet(tags []string) map[string]struct{} {
-	set := make(map[string]struct{}, len(tags))
-	for _, tag := range tags {
-		set[tag] = struct{}{}
-	}
-	return set
-}
-
-// Filter a map[string]*ContentItem by ContentItem tags.
-// Makes use of the tagset function for ~speed~
-func FilterByTags(items map[string]*ContentItem, tags []string) map[string]*ContentItem {
-	required := tagSet(tags)
-	result := make(map[string]*ContentItem)
-
-	for slug, item := range items {
-		itemTags := tagSet(item.Meta.Tags)
-		fmt.Println(itemTags)
-		match := true
-		for tag := range required {
-			if _, ok := itemTags[tag]; !ok {
-				match = false
-				break
-			}
-		}
-
-		if match {
-			result[slug] = item
-		}
-	}
-
-	return result
 }

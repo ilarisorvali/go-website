@@ -1,5 +1,7 @@
 package server
 
+// This file contains a set of functions that don't yet have a better home
+
 import (
 	"bytes"
 	"fmt"
@@ -88,6 +90,62 @@ func newTemplateCache() (map[string]*template.Template, error) {
 	}
 	// Return the map.
 	return cache, nil
+}
+
+// tagSet makes a fake "set" out of slices because Go doesn't have sets built in sets.
+// Keys are the tags and values are empty structs (that take up zero space)
+//
+//	map[string]struct{}{
+//		"major": {},
+//		"minor": {},
+//	}
+func tagSet(tags []string) map[string]struct{} {
+	set := make(map[string]struct{}, len(tags))
+	for _, tag := range tags {
+		set[tag] = struct{}{}
+	}
+	return set
+}
+
+// Filter a map[string]*ContentItem by ContentItem tags.
+// Makes use of the tagset function for ~speed~
+func (app *application) FilterCacheByTags(tags []string) map[string]*models.ContentItem {
+	required := tagSet(tags)
+	result := make(map[string]*models.ContentItem)
+
+	for slug, item := range app.contentCache {
+		itemTags := tagSet(item.Meta.Tags)
+		match := true
+		for tag := range required {
+			if _, ok := itemTags[tag]; !ok {
+				match = false
+				break
+			}
+		}
+
+		if match && !item.Meta.Draft {
+			result[slug] = item
+		}
+	}
+
+	return result
+}
+
+func (app *application) LatestPostFromCache(tags []string) *models.ContentItem {
+	var latest *models.ContentItem
+	matchingItems := app.FilterCacheByTags(tags)
+
+	for _, item := range matchingItems {
+		if item.Meta.Date.IsZero() {
+			continue
+		}
+
+		if latest == nil || item.Meta.Date.After(latest.Meta.Date.Time) {
+			latest = item
+		}
+	}
+
+	return latest
 }
 
 func (app *application) serverError(w http.ResponseWriter, r *http.Request, err error) {
