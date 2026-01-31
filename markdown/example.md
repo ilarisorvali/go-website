@@ -12,6 +12,10 @@ asdasdasdasdasdassad
 
 This site is made with [Go](https://go.dev)
 
+> Hello, this is a quote! This whole Pen is a demo of a blockquote where the last element is a list+list item, for the author.
+> 
+> Cassidy
+
 ## Ayy lmao
 
 steps

@@ -1,14 +1,24 @@
 {{ define "title"}} {{.Item.Meta.Title}} {{end}}
 
 {{define "content"}}
-<a href="/posts">Back to posts</a>
-    
+
 <div>
+  <div class="mx-auto text-3xl mb-16">
+    <a href="/posts" class="inline-block px-4 py-2 text-white rounded hover:bg-amber-500 transition">
+    ← Back to posts
+  </a>
+  </div>
+
+  <div class="mx-auto text-3xl">
     {{with .Item}}
-        <h1>{{.Meta.Title}}</h1>
-            <article class="prose-slate prose-lg max-w-none list-inside">
+        <div class="text-2xl">{{.Meta.Title}}</div>
+        <div>
+            <article class="prose dark:prose-invert prose-lg max-w-none list-inside">
                   {{.Content}}
             </article>
+        </div>
     {{end}}
     </div>
+</div>
+
 {{end}}
