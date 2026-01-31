@@ -29,6 +29,8 @@ type ContentItem struct {
 // contains a list of items and or one specific item to show
 type TemplateData struct {
 	Item  *ContentItem
+	Prev  *ContentItem
+	Next  *ContentItem
 	Items map[string]*ContentItem
 }
 

@@ -148,6 +148,35 @@ func (app *application) LatestPostFromCache(tags []string) *models.ContentItem {
 	return latest
 }
 
+func (app *application) NextPrevPostFromCache(slug string, tags []string) (next, prev *models.ContentItem) {
+	matchingItems := app.FilterCacheByTags(tags)
+	currentPost, ok := matchingItems[slug]
+	if !ok {
+		return nil, nil
+	}
+
+	currentTime := currentPost.Meta.Date.Time
+
+	for _, item := range matchingItems {
+		if item.Meta.Date.After(currentTime) {
+			if next == nil || item.Meta.Date.Before(next.Meta.Date.Time) {
+				temp := item
+				next = temp
+			}
+
+		}
+		if item.Meta.Date.Before(currentTime) {
+			if prev == nil || item.Meta.Date.After(prev.Meta.Date.Time) {
+				temp := item
+				prev = temp
+			}
+
+		}
+
+	}
+	return next, prev
+}
+
 func (app *application) serverError(w http.ResponseWriter, r *http.Request, err error) {
 	var (
 		method = r.Method
