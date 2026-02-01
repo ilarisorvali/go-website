@@ -49,5 +49,5 @@ func (app *application) recipes(w http.ResponseWriter, r *http.Request) {
 	data := models.TemplateData{
 		Items: app.FilterCacheByTags(tags),
 	}
-	app.render(w, r, http.StatusOK, "recipes.html", data)
+	app.render(w, r, http.StatusOK, "kitchen.html", data)
 }

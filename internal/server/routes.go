@@ -19,8 +19,8 @@ func (app *application) addRoutes() *http.ServeMux {
 	mux.HandleFunc("/{$}", app.home)
 	mux.HandleFunc("/posts/{$}", app.posts)
 	mux.HandleFunc("/posts/{slug}", app.viewPost)
-	mux.HandleFunc("/recipes/{$}", app.recipes)
-	mux.HandleFunc("/recipes/{slug}", app.viewPost)
+	mux.HandleFunc("/kitchen/{$}", app.recipes)
+	mux.HandleFunc("/kitchen/{slug}", app.viewPost)
 
 	return mux
 
