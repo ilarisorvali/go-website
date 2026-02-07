@@ -1,32 +1,50 @@
 {{define "title"}}Posts{{end}}
 
-{{define "main"}}
+{{define "content"}}
+<section class="max-w-2xl mx-auto">
 
-    <div class="latest-post">
-        <h1>Latest post:</h1>
-            {{if .Item}}
-                {{with .Item.Meta}}
-                <a href="{{.Slug}}">{{.Title}}</a> 
-                {{end}}
-            {{else}}
-                <p>There's nothing to see here.</p>
-            {{end}}
+  <!-- Latest -->
+  <h1 class="text-sm uppercase tracking-wide mb-4">
+    Latest post
+  </h1>
 
-    </div>
-
-    <div class="posts">
-    <h1>Older posts:</h1>
-    {{if .Items}}
-        {{range .Items}}
-            {{with .Meta}}
-            <li>
-                {{.Date.Format "2006 Jan 02"}} <a href="{{.Slug}}">{{.Title}}</a> 
-            </li>
-            {{end}}
-        {{end}}
-
-    {{else}}
-        <p>There's nothing to see here.</p>
+  {{if .Item}}
+    {{with .Item.Meta}}
+      <a href="{{.Slug}}"
+         class="block text-2xl font-semibold hover:text-amber-600 transition">
+        {{.Title}}
+      </a>
     {{end}}
-    </div>
+  {{else}}
+    <p class="text-gray-500">There’s nothing to see here.</p>
+  {{end}}
+
+  <hr class="my-12 border-gray-200">
+
+  <!-- Older -->
+  <h2 class="text-sm uppercase tracking-wide mb-6">
+    Older posts
+  </h2>
+
+  {{if .Items}}
+    <ul class="space-y-3">
+      {{range .Items}}
+        {{with .Meta}}
+          <li class="flex gap-4">
+            <span class="text-sm shrink-0">
+              {{.Date.Format "2006 Jan 02"}}
+            </span>
+            <a href="{{.Slug}}"
+               class= "hover:text-amber-600 transition">
+              {{.Title}}
+            </a>
+          </li>
+        {{end}}
+      {{end}}
+    </ul>
+  {{else}}
+    <p class="text-gray-500">There’s nothing to see here.</p>
+  {{end}}
+
+</section>
 {{end}}

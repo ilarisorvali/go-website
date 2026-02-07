@@ -1,8 +1,8 @@
 ---
-Title: Toinen poustaus
+Title: Ensimmäinen poustaus
 Description: Nonniih nyt olis sita descriptionia
-Slug: test-post2
-Date: 25.01.2025
+Slug: test-post3
+Date: 24.01.2025
 Tags: [post, major]
 ---
 

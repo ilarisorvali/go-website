@@ -28,7 +28,7 @@ func ParseMDToContent(file []byte) (*ContentItem, error) {
 
 	//Get the yaml metadata part from MD file
 	//Unmarshal metadata into Frontmatter struct
-	//TODO mabe use goldmark frontmatter extension
+	//TODO maybe use goldmark frontmatter extension
 	var meta FrontMatter
 
 	rest, err := fm.Parse(bytes.NewReader(file), &meta)

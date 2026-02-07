@@ -1,0 +1,32 @@
+{{define "title"}}Recipes{{end}}
+
+{{define "content"}}
+
+    <div class="recipes">
+      <p>This is a collection of different recipes and cooking knowledge tidbits.</p>
+      <p></p><strong>They are provided "as is" without warranty of any kind.</strong></p>
+
+      <h2>Recipes</h2>
+      <ul>
+      {{range .Items}}
+        {{with .Meta}}
+          {{if hasTag .Tags "recipe"}}
+            <li><a href="{{.Slug}}">{{.Title}}</a></li>
+          {{end}}
+        {{end}}
+      {{end}}
+      </ul>
+
+      <h2>Kitchen Tidbits</h2>
+      <ul>
+      {{range .Items}}
+        {{with .Meta}}
+          {{if hasTag .Tags "tidbit"}}
+            <li><a href="{{.Slug}}">{{.Title}}</a></li>
+          {{end}}
+        {{end}}
+      {{end}}
+      </ul>
+
+    </div>
+{{end}}

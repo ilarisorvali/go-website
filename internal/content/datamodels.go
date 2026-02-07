@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-// metadata of a post
-// uses struct tags for marshaling purposes in markdown parsing
+// Metadata of a post
+// Uses struct tags for marshaling purposes in markdown parsing
 type FrontMatter struct {
 	Title       string                `yaml:"Title"`
 	Description string                `yaml:"Description"`
@@ -29,6 +29,8 @@ type ContentItem struct {
 // contains a list of items and or one specific item to show
 type TemplateData struct {
 	Item  *ContentItem
+	Prev  *ContentItem
+	Next  *ContentItem
 	Items map[string]*ContentItem
 }
 
