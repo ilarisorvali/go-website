@@ -1,21 +1,25 @@
 {{define "base"}}
 <!doctype html>
-<html lang='en'>
+<html lang="en">
     <head>
-      <link rel="stylesheet" href="/static/css/tailwind.css">
-      <title>{{template "title" .}} - Ilari Sorvali</title>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-      <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+        <link rel="stylesheet" href="/static/css/tailwind.css" />
+        <title>{{template "title" .}} - Ilari Sorvali</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+            rel="stylesheet"
+        />
+        <meta
+            name="viewport"
+            content="initial-scale=1,maximum-scale=1,user-scalable=no"
+        />
     </head>
 
-    <body class="min-h-screen flex flex-col bg-slate-800 gap-1 text-white p-10">
-        {{template "header"}}
-        {{template "navbar"}}
-        <div class="max-w-4xl mx-auto">
-            {{template "content" .}}
-        </div>
+    <body class="min-h-screen flex flex-col bg-nord-0 gap-1 text-nord-5 p-10">
+        {{template "topbar"}}
+        <div class="w-4xl mx-auto">
+            {{template "content" .}}</div>
     </body>
 </html>
 {{end}}

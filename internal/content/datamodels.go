@@ -6,15 +6,15 @@ import (
 	"time"
 )
 
-// metadata of a post
-// uses struct tags for marshaling purposes in markdown parsing
+// Metadata of a post
+// Uses struct tags for marshaling purposes in markdown parsing
 type FrontMatter struct {
 	Title       string                `yaml:"Title"`
 	Description string                `yaml:"Description"`
 	Slug        string                `yaml:"Slug"`
 	Draft       bool                  `yaml:"Draft"`
 	Date        FrontMatterCustomDate `yaml:"Date"`
-	Tags        []string              `yaml:"Tags"`
+	Tags        map[string]struct{}   `yaml:"Tags"` // A "fake" set, because Go doesn't have real built in sets
 }
 
 // single item of content for website,
@@ -62,5 +62,23 @@ func (d *FrontMatterCustomDate) UnmarshalYAML(unmarshal func(any) error) error {
 	}
 
 	d.Time = t
+	return nil
+}
+
+// Custom unmarshalling of tags into a set
+func (m *FrontMatter) UnmarshalYAML(unmarshal func(any) error) error {
+	var raw struct {
+		Tags []string `yaml:"Tags"`
+	}
+
+	if err := unmarshal(&raw); err != nil {
+		return err
+	}
+
+	m.Tags = make(map[string]struct{}, len(raw.Tags))
+	for _, tag := range raw.Tags {
+		m.Tags[tag] = struct{}{}
+	}
+
 	return nil
 }

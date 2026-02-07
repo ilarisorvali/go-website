@@ -51,6 +51,17 @@ func newContentCache() (map[string]*models.ContentItem, error) {
 	return cache, nil
 }
 
+// A helper function for further post filtering in the templates
+func hasTag(tags map[string]struct{}, tag string) bool {
+	_, ok := tags[tag]
+	return ok
+}
+
+// Needed to register custom functions for the templates
+var functions = template.FuncMap{
+	"hasTag": hasTag,
+}
+
 func newTemplateCache() (map[string]*template.Template, error) {
 	//Init an empty map to act as the template cache
 	cache := map[string]*template.Template{}
@@ -66,19 +77,19 @@ func newTemplateCache() (map[string]*template.Template, error) {
 		// Extract the file name (like 'home.html')
 		name := filepath.Base(page)
 
-		// Parse the base template
-		ts, err := template.ParseFiles("./ui/html/base.html")
+		// Create blank template, add functions and parse the base template
+		ts, err := template.New(name).Funcs(functions).ParseFiles("./ui/html/base.html")
 		if err != nil {
 			return nil, err
 		}
 
-		// ParseGlob() on current template set to add any partials
+		// ParseGlob() on base template set to add partials (navbar, footer, etc.)
 		ts, err = ts.ParseGlob("./ui/html/partials/*.html")
 		if err != nil {
 			return nil, err
 		}
 
-		// ParseFiles() on current template set to add the current page template
+		// ParseFiles() on current template set to add the current page template contents to the base
 		ts, err = ts.ParseFiles(page)
 		if err != nil {
 			return nil, err
@@ -92,13 +103,6 @@ func newTemplateCache() (map[string]*template.Template, error) {
 	return cache, nil
 }
 
-// tagSet makes a fake "set" out of slices because Go doesn't have sets built in sets.
-// Keys are the tags and values are empty structs (that take up zero space)
-//
-//	map[string]struct{}{
-//		"major": {},
-//		"minor": {},
-//	}
 func tagSet(tags []string) map[string]struct{} {
 	set := make(map[string]struct{}, len(tags))
 	for _, tag := range tags {
@@ -114,7 +118,7 @@ func (app *application) FilterCacheByTags(tags []string) map[string]*models.Cont
 	result := make(map[string]*models.ContentItem)
 
 	for slug, item := range app.contentCache {
-		itemTags := tagSet(item.Meta.Tags)
+		itemTags := item.Meta.Tags
 		match := true
 		for tag := range required {
 			if _, ok := itemTags[tag]; !ok {
