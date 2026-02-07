@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"path/filepath"
 	"runtime/debug"
+	"slices"
 
 	models "github.com/ilarisorvali/sorvali-systems/internal/content"
 )
@@ -52,9 +53,9 @@ func newContentCache() (map[string]*models.ContentItem, error) {
 }
 
 // A helper function for further post filtering in the templates
-func hasTag(tags map[string]struct{}, tag string) bool {
-	_, ok := tags[tag]
-	return ok
+func hasTag(tags []string, tag string) bool {
+	exists := slices.Contains(tags, tag)
+	return exists
 }
 
 // Needed to register custom functions for the templates
@@ -118,7 +119,7 @@ func (app *application) FilterCacheByTags(tags []string) map[string]*models.Cont
 	result := make(map[string]*models.ContentItem)
 
 	for slug, item := range app.contentCache {
-		itemTags := item.Meta.Tags
+		itemTags := tagSet(item.Meta.Tags)
 		match := true
 		for tag := range required {
 			if _, ok := itemTags[tag]; !ok {
