@@ -31,13 +31,7 @@
       {{range .Items}}
         {{with .Meta}}
           <li class="flex gap-4">
-            <span class="text-sm shrink-0">
-              {{.Date.Format "2006 Jan 02"}}
-            </span>
-            <a href="{{.Slug}}"
-               class= "hover:text-amber-600 transition">
-              {{.Title}}
-            </a>
+              {{.Date.Format "2006 Jan 02"}} <a href="{{.Slug}}" class= "hover:text-amber-600 transition"> {{.Title}}</a>
           </li>
         {{end}}
       {{end}}
