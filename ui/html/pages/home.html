@@ -1,10 +1,38 @@
 {{define "title"}}Home{{end}}
 
 {{define "content"}}
-    <div class="shadow-xl border-solid border-2">
-      <p>Hi! I'm Ilari, and this is my personal website where I sometimes post about interesting
-        stuff that I have been doing. It also works as a digital recipe and cooking tips-and-tricks repository
-      </p>
-    </div>
-{{end}}
+<main class="max-w-5xl mx-auto px-6 mt-28">
 
+  <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
+
+    <!-- Profile Image -->
+    <img
+      src="/static/images/ilari.jpg"
+      alt="Photo of Your Name"
+      class="w-36 h-36 md:w-44 md:h-44  object-cover"
+    />
+
+    <!-- Intro Text -->
+    <div class="text-center md:text-left">
+
+      <h2 class="text-4xl font-medium mb-4">
+        Hei!/Hello! I’m Ilari
+      </h2>
+
+      <div class="text-lg leading-relaxed text-nord-5 max-w-lg">
+        <p>
+          This is my personal website that functions as a blog of sorts when I feel like writing about something and as a
+          platform for me to collect all sorts of cooing recieps instead of dumping them into my Telegram saved messages folder.
+        </p>
+        <br>
+        <p>
+          At my work life I'm a Test Automation/QA engineer at <a href="valagroup.com">VALA</a>.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+{{end}}

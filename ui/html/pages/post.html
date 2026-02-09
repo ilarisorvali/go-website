@@ -1,27 +1,32 @@
-{{ define "title"}} {{.Item.Meta.Title}} {{end}} {{define "content"}}
+{{ define "title"}} {{.Item.Meta.Title}} {{end}}
 
-<div>
-    <div class="mx-auto text-3xl mb-16 md:min-w-max">
+{{define "content"}}
+<main class="w-4xl mx-auto">
+
+    <div class="mx-auto text-3xl mb-16 ">
         <a href="/posts" class="inline-block py-2 text-white rounded hover:bg-nord-7 transition">
             ← Back
         </a>
     </div>
 
-    <h1 class="text-4xl mb-16">{{.Item.Meta.Title}}</h1>
+    <h1 class="text-4xl mb-16 text-center">{{.Item.Meta.Title}}</h1>
 
-    <hr class="w-48 h-1 mx-auto my-4 bg-nord-15 border-0 rounded-sm md:my-10"/>
+    <hr class="w-48 h-1 mx-auto my-4 bg-nord-13 border-0 rounded-sm md:my-10"/>
 
-    <div>
-        {{with .Item}}
-        <div>
-            <article class="prose dark:prose-invert prose-lg container list-inside">
-                {{.Content}}
+
+    {{if .Item}}
+      <div class="mx-auto px-4">
+          <!--the width must be defined again, otherwise prose overrides it-->
+        <article class="prose dark:prose-invert list-inside mx-auto max-w-3xl">
+          {{.Item.Content}}
             </article>
-        </div>
-        {{end}}
-    </div>
+      </div>
+    {{else}}
+      <h1>The post content couldn't be loaded, sorry.</h1>
+    {{end}}
 
-    <hr class="w-48 h-1 mx-auto my-4 bg-nord-15 border-0 rounded-sm md:my-10"/>
+
+    <hr class="w-48 h-1 mx-auto my-4 bg-nord-13 border-0 rounded-sm md:my-10"/>
 
     <div class="flex gap-4 p-4 mt-16">
         <div class="mx-auto text-2xl mb-16">
@@ -32,7 +37,8 @@
             {{else}}
 
             {{end}}
-        </div>
+
+    </div>
 
         <div class="mx-auto text-2xl mb-16">
             {{if .Next}}
@@ -44,6 +50,5 @@
             {{end}}
         </div>
     </div>
-</div>
-
+</main>
 {{end}}

@@ -23,3 +23,9 @@ html {
     --color-nord-14: #a3be8c; /* green */
     --color-nord-15: #b48ead; /* purple */
 }
+
+@layer base {
+    a {
+        @apply text-nord-14 hover:text-nord-7 transition-colors;
+    }
+}

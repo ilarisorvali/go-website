@@ -11,7 +11,7 @@
   {{if .Item}}
     {{with .Item.Meta}}
       <a href="{{.Slug}}"
-         class="block text-2xl font-semibold hover:text-amber-600 transition">
+         class="block text-2xl font-semibold">
         {{.Title}}
       </a>
     {{end}}
@@ -19,7 +19,6 @@
     <p class="text-gray-500">There’s nothing to see here.</p>
   {{end}}
 
-  <hr class="my-12 border-gray-200">
 
   <!-- Older -->
   <h2 class="text-sm uppercase tracking-wide mb-6">
@@ -31,7 +30,7 @@
       {{range .Items}}
         {{with .Meta}}
           <li class="flex gap-4">
-              {{.Date.Format "2006 Jan 02"}} <a href="{{.Slug}}" class= "hover:text-amber-600 transition"> {{.Title}}</a>
+              {{.Date.Format "2006 Jan 02"}} <a href="{{.Slug}}"> {{.Title}}</a>
           </li>
         {{end}}
       {{end}}
