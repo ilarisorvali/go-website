@@ -5,27 +5,8 @@ html {
     scrollbar-gutter: stable;
 }
 
-@theme {
-    --color-nord-0: #2e3440; /* dark background */
-    --color-nord-1: #3b4252;
-    --color-nord-2: #434c5e;
-    --color-nord-3: #4c566a;
-    --color-nord-4: #d8dee9; /* light text */
-    --color-nord-5: #e5e9f0;
-    --color-nord-6: #eceff4;
-    --color-nord-7: #8fbcbb; /* accent */
-    --color-nord-8: #88c0d0; /* accent */
-    --color-nord-9: #81a1c1; /* accent */
-    --color-nord-10: #5e81ac; /* accent */
-    --color-nord-11: #bf616a; /* red */
-    --color-nord-12: #d08770; /* orange */
-    --color-nord-13: #ebcb8b; /* yellow */
-    --color-nord-14: #a3be8c; /* green */
-    --color-nord-15: #b48ead; /* purple */
-}
-
 @layer base {
     a {
-        @apply text-nord-14 hover:text-nord-7 transition-colors;
+        @apply text-indigo-500 hover:text-indigo-400 transition-colors underline-offset-1 underline;
     }
 }

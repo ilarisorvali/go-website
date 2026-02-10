@@ -16,12 +16,14 @@
         />
     </head>
 
-    <body class="min-h-screen flex flex-col mx-auto bg-nord-0 gap-1 text-nord-5 p-10">
+    <body class="min-h-screen flex flex-col mx-auto bg-zinc-900 gap-1 text-zinc-200 p-10">
         {{template "topbar"}}
 
-        {{template "content" .}}
+        <div class="border md:border-solid border-stone-400">
+          {{template "content" .}}
+        </div>
 
-        <div class="mt-auto mx-auto">
+        <div class="mt-auto mx-auto text-sm md:text-lg">
           {{template "footer"}}
         </div>
 

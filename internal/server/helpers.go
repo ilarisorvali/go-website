@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"runtime/debug"
 	"slices"
+	"time"
 
 	models "github.com/ilarisorvali/sorvali-systems/internal/content"
 )
@@ -61,6 +62,9 @@ func hasTag(tags []string, tag string) bool {
 // Needed to register custom functions for the templates
 var functions = template.FuncMap{
 	"hasTag": hasTag,
+	"Year": func() int {
+		return time.Now().Year()
+	},
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {

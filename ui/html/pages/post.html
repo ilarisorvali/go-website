@@ -1,52 +1,49 @@
 {{ define "title"}} {{.Item.Meta.Title}} {{end}}
 
 {{define "content"}}
-<main class="w-4xl mx-auto">
+<main class="w-full max-w-4xl mx-auto px-4">
 
-    <div class="mx-auto text-3xl mb-16 ">
+    <div class="mx-auto text-3xl mb-8 md:mb-16">
         <a href="/posts" class="inline-block py-2 text-white rounded hover:bg-nord-7 transition">
             ← Back
         </a>
     </div>
 
-    <h1 class="text-4xl mb-16 text-center">{{.Item.Meta.Title}}</h1>
+    <h1 class="text-3xl md:text-4xl mb-8 md:mb-16 text-center">{{.Item.Meta.Title}}</h1>
 
     <hr class="w-48 h-1 mx-auto my-4 bg-nord-13 border-0 rounded-sm md:my-10"/>
 
-
     {{if .Item}}
-      <div class="mx-auto px-4">
-          <!--the width must be defined again, otherwise prose overrides it-->
-        <article class="prose dark:prose-invert list-inside mx-auto max-w-3xl">
+      <div class="mx-auto">
+          <!-- Markdown content -->
+        <article class="prose dark:prose-invert list-inside mx-auto max-w-full">
           {{.Item.Content}}
-            </article>
+        </article>
       </div>
     {{else}}
       <h1>The post content couldn't be loaded, sorry.</h1>
     {{end}}
 
-
     <hr class="w-48 h-1 mx-auto my-4 bg-nord-13 border-0 rounded-sm md:my-10"/>
 
-    <div class="flex gap-4 p-4 mt-16">
-        <div class="mx-auto text-2xl mb-16">
+    <div class="flex flex-col md:flex-row gap-4 p-4 mt-8 md:mt-16">
+        <div class="mx-auto text-xl md:text-2xl mb-8">
             {{if .Prev}}
               {{with .Prev.Meta}}
               <a href="{{.Slug}}">← Previous post</a>
             {{end}}
             {{else}}
-
+              <!-- No previous post -->
             {{end}}
+        </div>
 
-    </div>
-
-        <div class="mx-auto text-2xl mb-16">
+        <div class="mx-auto text-xl md:text-2xl mb-8">
             {{if .Next}}
               {{with .Next.Meta}}
               <a href="{{.Slug}}">Next post →</a>
             {{end}}
             {{else}}
-
+              <!-- No next psot -->
             {{end}}
         </div>
     </div>

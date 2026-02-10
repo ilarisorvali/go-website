@@ -1,38 +1,30 @@
 {{define "title"}}Home{{end}}
 
 {{define "content"}}
-<main class="max-w-5xl mx-auto px-6 mt-28">
-
+<main class="max-w-5xl mx-auto px-6 mt-10 md:mt-28">
   <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
-
     <!-- Profile Image -->
     <img
       src="/static/images/ilari.jpg"
-      alt="Photo of Your Name"
-      class="w-36 h-36 md:w-44 md:h-44  object-cover"
+      alt="Photo of Ilari Sorvali"
+      class="w-40 h-40 md:w-44 md:h-44 object-cover"
     />
 
     <!-- Intro Text -->
-    <div class="text-center md:text-left">
-
-      <h2 class="text-4xl font-medium mb-4">
-        Hei!/Hello! I’m Ilari
-      </h2>
-
-      <div class="text-lg leading-relaxed text-nord-5 max-w-lg">
+    <div class="md:text-left">
+      <h2 class="text-4xl font-medium mb-4">Hei!/Hello!</h2>
+      <div class="text-lg leading-relaxed text-nord-5 max-w-md md:max-w-lg">
         <p>
-          This is my personal website that functions as a blog of sorts when I feel like writing about something and as a
-          platform for me to collect all sorts of cooing recieps instead of dumping them into my Telegram saved messages folder.
+          This is my personal website, which functions as a blog that I update whenever I feel like writing about something,
+          and as a place to collect cooking recipes instead of dumping them into my Telegram saved messages folder :)
         </p>
         <br>
         <p>
-          At my work life I'm a Test Automation/QA engineer at <a href="valagroup.com">VALA</a>.
+          At my work life I'm a Test Automation/QA engineer at <a href="https://www.valagroup.com/">VALA</a>.
         </p>
       </div>
-
     </div>
-
   </div>
-
 </main>
+
 {{end}}

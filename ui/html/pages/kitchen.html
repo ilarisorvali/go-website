@@ -2,31 +2,60 @@
 
 {{define "content"}}
 
-    <div class="recipes">
-      <p>This is a collection of different recipes and cooking knowledge tidbits.</p>
-      <p></p><strong>They are provided "as is" without warranty of any kind.</strong></p>
+<div class="max-w-4xl mx-auto px-6">
 
-      <h2>Recipes</h2>
-      <ul>
+  <p class="mb-12">
+    A collection of recipes. They are provided "as is" without warranty of any kind.
+  </p>
+
+  <!-- Sides -->
+  <section class="mb-10">
+    <h2 class="text-3xl font-medium mb-6">Sides</h2>
+    <ul class="space-y-2">
       {{range .Items}}
         {{with .Meta}}
-          {{if hasTag .Tags "recipe"}}
+          {{if and (hasTag .Tags "kitchen") (hasTag .Tags "side")}}
             <li><a href="{{.Slug}}">{{.Title}}</a></li>
+            {{else}}
+              <p>There's nothing here (yet)</p>
           {{end}}
         {{end}}
       {{end}}
-      </ul>
+    </ul>
+  </section>
 
-      <h2>Kitchen Tidbits</h2>
-      <ul>
+  <!-- Mains -->
+  <section class="mb-10">
+    <h2 class="text-3xl font-medium mb-6">Mains</h2>
+    <ul class="space-y-2">
       {{range .Items}}
         {{with .Meta}}
-          {{if hasTag .Tags "tidbit"}}
+          {{if and (hasTag .Tags "kitchen") (hasTag .Tags "main")}}
             <li><a href="{{.Slug}}">{{.Title}}</a></li>
+            {{else}}
+              <p>There's nothing here (yet)</p>
           {{end}}
         {{end}}
       {{end}}
-      </ul>
+    </ul>
+  </section>
 
-    </div>
+  <!-- Misc -->
+  <section>
+    <h2 class="text-3xl font-medium mb-6">Misc</h2>
+    <ul class="space-y-2">
+      {{range .Items}}
+        {{with .Meta}}
+          {{if and (hasTag .Tags "kitchen") (hasTag .Tags "misc")}}
+            <li><a href="{{.Slug}}">{{.Title}}</a></li>
+            {{else}}
+              <p>There's nothing here (yet)</p>
+          {{end}}
+        {{end}}
+      {{end}}
+    </ul>
+  </section>
+
+</div>
+
 {{end}}

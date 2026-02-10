@@ -43,7 +43,7 @@ func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, http.StatusOK, "post.html", data)
 }
 
-func (app *application) recipes(w http.ResponseWriter, r *http.Request) {
+func (app *application) kitchen(w http.ResponseWriter, r *http.Request) {
 	kitchenItems := []string{"kitchen"}
 
 	data := models.TemplateData{
