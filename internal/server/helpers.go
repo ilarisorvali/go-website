@@ -70,7 +70,6 @@ var functions = template.FuncMap{
 func newTemplateCache() (map[string]*template.Template, error) {
 	//Init an empty map to act as the template cache
 	cache := map[string]*template.Template{}
-
 	//Get slice of page filepath strings
 	pages, err := filepath.Glob("./ui/html/pages/*.html")
 
@@ -81,25 +80,21 @@ func newTemplateCache() (map[string]*template.Template, error) {
 	for _, page := range pages {
 		// Extract the file name (like 'home.html')
 		name := filepath.Base(page)
-
 		// Create blank template, add functions and parse the base template
 		ts, err := template.New(name).Funcs(functions).ParseFiles("./ui/html/base.html")
 		if err != nil {
 			return nil, err
 		}
-
 		// ParseGlob() on base template set to add partials (navbar, footer, etc.)
 		ts, err = ts.ParseGlob("./ui/html/partials/*.html")
 		if err != nil {
 			return nil, err
 		}
-
 		// ParseFiles() on current template set to add the current page template contents to the base
 		ts, err = ts.ParseFiles(page)
 		if err != nil {
 			return nil, err
 		}
-
 		// Add the template set to the map, using the name of the page
 		// (like 'home.tmpl') as the key.
 		cache[name] = ts

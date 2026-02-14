@@ -1,6 +1,7 @@
 package server
 
 import (
+	"flag"
 	"html/template"
 	"log/slog"
 	"net/http"
@@ -16,7 +17,8 @@ type application struct {
 }
 
 func RunServer() error {
-	addr := ":9000"
+	addr := flag.String("addr", ":9000", "HTTP port for the server to use")
+	flag.Parse()
 
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
@@ -40,12 +42,14 @@ func RunServer() error {
 		contentCache:  cache,
 	}
 
-	mux := app.addRoutes()
+	srv := &http.Server{
+		Addr:    *addr,
+		Handler: app.addRoutes(),
+	}
 
 	logger.Info("starting server", "addr", addr)
-	if err := http.ListenAndServe(addr, mux); err != nil && err != http.ErrServerClosed {
-		logger.Error(err.Error())
-		os.Exit(1)
-	}
+	err = srv.ListenAndServe()
+	logger.Error(err.Error())
+
 	return nil
 }
