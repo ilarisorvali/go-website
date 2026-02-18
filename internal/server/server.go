@@ -18,6 +18,7 @@ type application struct {
 
 func RunServer() error {
 	addr := flag.String("addr", ":9000", "HTTP port for the server to use")
+	contentDir := flag.String("mddir", "./markdown", "directory to load markdown content from")
 	flag.Parse()
 
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
@@ -30,7 +31,7 @@ func RunServer() error {
 		os.Exit(1)
 	}
 	// init content cache for application, check for errors
-	cache, err := newContentCache()
+	cache, err := newContentCache(contentDir)
 	if err != nil {
 		logger.Error(err.Error())
 		os.Exit(1)
@@ -47,7 +48,7 @@ func RunServer() error {
 		Handler: app.addRoutes(),
 	}
 
-	logger.Info("starting server", "addr", addr)
+	logger.Info("starting server", "addr", *addr)
 	err = srv.ListenAndServe()
 	logger.Error(err.Error())
 

@@ -1,7 +1,7 @@
 #Build stage
 FROM golang:1.25.6 AS build
 
-WORKDIR /app
+WORKDIR /
 
 COPY go.mod go.sum ./
 
@@ -14,9 +14,9 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o go-website
 #Runtime stage
 FROM scratch
 
-WORKDIR /app
+WORKDIR /
 
-COPY --from=build /app/go-website .
+COPY --from=build /go-website .
 
 COPY ./ui ./ui
 

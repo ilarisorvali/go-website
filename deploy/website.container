@@ -1,0 +1,19 @@
+[Unit]
+Description=Personal website
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+# Use local image
+Image=go-website-prod
+
+Pull=never
+
+ContainerName=personal-website
+
+PublishPort=127.0.0.1:8080:9000
+
+Restart=always
+
+[Install]
+WantedBy=default.target

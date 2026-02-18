@@ -1,43 +1,33 @@
 {{define "title"}}Posts{{end}}
 
 {{define "content"}}
-<section class="max-w-2xl mx-auto">
 
-  <!-- Latest -->
-  <h1 class="text-sm uppercase tracking-wide mb-4">
-    Latest post
-  </h1>
-
-  {{if .Item}}
-    {{with .Item.Meta}}
-      <a href="{{.Slug}}"
-         class="block text-2xl font-semibold">
-        {{.Title}}
-      </a>
-    {{end}}
-  {{else}}
-    <p class="text-gray-500">There’s nothing to see here.</p>
-  {{end}}
-
-
-  <!-- Older -->
-  <h2 class="text-sm uppercase tracking-wide mb-6">
-    Older posts
+<main class="max-w-5xl mx-auto px-6 mt-10 md:mt-28">
+  <!-- Posts -->
+  <h2 class="text-md uppercase tracking-wide mb-6">
+   All posts
   </h2>
 
   {{if .Items}}
     <ul class="space-y-3">
       {{range .Items}}
         {{with .Meta}}
-          <li class="flex gap-4">
-              {{.Date.Format "2006 Jan 02"}} <a href="{{.Slug}}"> {{.Title}}</a>
-          </li>
+        <li class="flex gap-4">
+          <span class="w-32 shrink-0 tabular-nums">
+            {{.Date.Format "2006 Jan 02"}}
+          </span>
+          <a href="{{.Slug}}">
+            {{.Title}}
+          </a>
+        </li>
+
+
         {{end}}
       {{end}}
     </ul>
   {{else}}
-    <p class="text-gray-500">There’s nothing to see here.</p>
+    <p>There’s nothing to see here.</p>
   {{end}}
 
-</section>
+</main>
 {{end}}

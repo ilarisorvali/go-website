@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 
 	models "github.com/ilarisorvali/sorvali-systems/internal/content"
@@ -37,8 +36,6 @@ func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
 		Next: next,
 		Prev: prev,
 	}
-
-	fmt.Println(data)
 
 	app.render(w, r, http.StatusOK, "post.html", data)
 }

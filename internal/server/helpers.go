@@ -16,7 +16,6 @@ import (
 )
 
 func (app *application) render(w http.ResponseWriter, r *http.Request, status int, page string, data models.TemplateData) {
-
 	// Retrieve template from templatecache with page name,
 	// raises error if template does not exist
 	ts, ok := app.templateCache[page]
@@ -43,10 +42,10 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 }
 
 // TODO add error handling
-func newContentCache() (map[string]*models.ContentItem, error) {
-	// kind indicates what kind of content to load ie. Post or Recipe
-	// init an empty map ot ac as the ContentItem cache
-	cache, err := models.LoadContentFiles("./markdown")
+func newContentCache(dir *string) (map[string]*models.ContentItem, error) {
+	//Get content directory
+	//load and parse markdown content to cache
+	cache, err := models.LoadContentFiles(*dir)
 	if err != nil {
 		return nil, err
 	}
@@ -104,6 +103,9 @@ func newTemplateCache() (map[string]*template.Template, error) {
 }
 
 func tagSet(tags []string) map[string]struct{} {
+	// Make a map for post tags, where keys are tags and
+	// values are empty structs (they take 0 bytes of space)
+	// This functions as a "set" as Go doesn't have built-in sets
 	set := make(map[string]struct{}, len(tags))
 	for _, tag := range tags {
 		set[tag] = struct{}{}
