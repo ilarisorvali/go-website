@@ -1,4 +1,4 @@
-module github.com/ilarisorvali/sorvali-systems
+module github.com/ilarisorvali/go-website
 
 go 1.25.5
 

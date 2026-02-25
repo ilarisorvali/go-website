@@ -1,0 +1,12 @@
+[Unit]
+Description=Personal website build service
+After=network-online.target
+
+[Build]
+ImageTag=go-website:latest
+Pull=never
+File=/path/to/Containerfile
+
+[Service]
+Type=oneshot
+RemainAfterExit=no

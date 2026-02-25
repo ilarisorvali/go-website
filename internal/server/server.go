@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	models "github.com/ilarisorvali/sorvali-systems/internal/content"
+	models "github.com/ilarisorvali/go-website/internal/content"
 )
 
 type application struct {
@@ -17,13 +17,15 @@ type application struct {
 }
 
 func RunServer() error {
+	// Get the server port as a flag, default to 9000
 	addr := flag.String("addr", ":9000", "HTTP port for the server to use")
-	contentDir := flag.String("mddir", "./markdown", "directory to load markdown content from")
+	// Get the markdown content directory as a flag, default to .markdown
+	contentDir := flag.String("contentdir", "./markdown", "directory to load markdown content from")
 	flag.Parse()
 
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
-	// init template cache for application, check for errors		s
+	// init template cache for application, check for errors
 	templateCache, err := newTemplateCache()
 
 	if err != nil {

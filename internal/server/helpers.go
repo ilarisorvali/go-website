@@ -12,7 +12,7 @@ import (
 	"slices"
 	"time"
 
-	models "github.com/ilarisorvali/sorvali-systems/internal/content"
+	models "github.com/ilarisorvali/go-website/internal/content"
 )
 
 func (app *application) render(w http.ResponseWriter, r *http.Request, status int, page string, data models.TemplateData) {

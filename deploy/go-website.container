@@ -1,0 +1,15 @@
+[Unit]
+Description=Personal website
+After=network-online.target
+Requires=go-website-build.service
+
+[Container]
+Image=go-website.build
+PublishPort=9000:9000
+Volume=%h/path/to/markdown/content:/app/markdown:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

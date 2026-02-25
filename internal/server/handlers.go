@@ -3,7 +3,7 @@ package server
 import (
 	"net/http"
 
-	models "github.com/ilarisorvali/sorvali-systems/internal/content"
+	models "github.com/ilarisorvali/go-website/internal/content"
 )
 
 const homePath = "./markdown/static/home.md"

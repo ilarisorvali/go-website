@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ilarisorvali/sorvali-systems/internal/server"
+	"github.com/ilarisorvali/go-website/internal/server"
 )
 
 func main() {
