@@ -3,7 +3,7 @@ Title: This should be the latest post
 Description: Test Description
 Slug: latest-post
 Date: 30.01.2025
-Tags: [post, major]
+Tags: [post]
 ---
 
 # This is a post loers laers :DDDDDDDDDD

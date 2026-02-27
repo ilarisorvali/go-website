@@ -3,7 +3,7 @@ Title: Building a website in go, a novice approach, kolmas
 Description: Test Description
 Slug: test-post
 Date: 26.01.2025
-Tags: [post, major]
+Tags: [post]
 ---
 
 asdasdasdasdasdasd
@@ -59,6 +59,17 @@ func newTemplateCache() (map[string]*template.Template, error) {
 	}
 	// Return the map.
 	return cache, nil
+}
+```
+
+```go
+type FrontMatter struct {
+	Title       string                `yaml:"Title"`
+	Description string                `yaml:"Description"`
+	Slug        string                `yaml:"Slug"`
+	Draft       bool                  `yaml:"Draft"`
+	Date        FrontMatterCustomDate `yaml:"Date"`
+	Tags        []string              `yaml:"Tags"`
 }
 ```
 

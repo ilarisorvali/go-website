@@ -3,7 +3,7 @@ Title: Ensimmäinen poustaus
 Description: Nonniih nyt olis sita descriptionia
 Slug: test-post3
 Date: 24.01.2025
-Tags: [post, major]
+Tags: [post]
 ---
 
 This is a post loers laers :DDDDDDDDDD

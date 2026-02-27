@@ -10,21 +10,21 @@
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
             rel="stylesheet"
         />
-        <meta
-            name="viewport"
-            content="initial-scale=1,maximum-scale=1,user-scalable=no"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     </head>
 
-    <body class="min-h-screen flex flex-col mx-auto bg-zinc-900 gap-1 text-zinc-200 p-10">
-        {{template "topbar"}}
+    <body class="min-h-screen flex flex-col bg-zinc-900 text-zinc-200">
+        <div class="flex flex-col min-h-screen px-4 md:px-10" >
+            {{template "topbar"}}
 
-        <div class=" mx-auto">
-          {{template "content" .}}
-        </div>
+            <div class="mx-auto w-full max-w-4xl">
+                {{template "content" .}}
+            </div>
 
-        <div class="mt-auto mx-auto text-sm md:text-lg">
-          {{template "footer"}}
+            <div class="mt-auto mx-auto text-sm md:text-lg">
+                {{template "footer"}}
+            </div>
         </div>
 
     </body>
