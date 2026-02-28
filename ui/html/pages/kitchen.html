@@ -12,14 +12,17 @@
   <section class="mb-10">
     <h2 class="text-3xl font-medium mb-6">Sides</h2>
     <ul class="space-y-2">
+      {{ $found := false }}
       {{range .Items}}
         {{with .Meta}}
           {{if and (hasTag .Tags "kitchen") (hasTag .Tags "side")}}
+            {{ $found = true }}
             <li><a href="{{.Slug}}">{{.Title}}</a></li>
-            {{else}}
-              <p>There's nothing here (yet)</p>
           {{end}}
         {{end}}
+      {{end}}
+      {{if not $found}}
+        <p>There's nothing here (yet)</p>
       {{end}}
     </ul>
   </section>
@@ -28,14 +31,17 @@
   <section class="mb-10">
     <h2 class="text-3xl font-medium mb-6">Mains</h2>
     <ul class="space-y-2">
+      {{ $found := false }}
       {{range .Items}}
         {{with .Meta}}
           {{if and (hasTag .Tags "kitchen") (hasTag .Tags "main")}}
+            {{ $found = true }}
             <li><a href="{{.Slug}}">{{.Title}}</a></li>
-            {{else}}
-              <p>There's nothing here (yet)</p>
           {{end}}
         {{end}}
+      {{end}}
+      {{if not $found}}
+        <p>There's nothing here (yet)</p>
       {{end}}
     </ul>
   </section>
@@ -44,14 +50,17 @@
   <section>
     <h2 class="text-3xl font-medium mb-6">Misc</h2>
     <ul class="space-y-2">
+      {{ $found := false }}
       {{range .Items}}
         {{with .Meta}}
           {{if and (hasTag .Tags "kitchen") (hasTag .Tags "misc")}}
+            {{ $found = true }}
             <li><a href="{{.Slug}}">{{.Title}}</a></li>
-            {{else}}
-              <p>There's nothing here (yet)</p>
           {{end}}
         {{end}}
+      {{end}}
+      {{if not $found}}
+        <p>There's nothing here (yet)</p>
       {{end}}
     </ul>
   </section>
