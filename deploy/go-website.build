@@ -6,6 +6,7 @@ After=network-online.target
 ImageTag=go-website:latest
 Pull=never
 File=/path/to/Containerfile
+ForceRM=true
 
 [Service]
 Type=oneshot
