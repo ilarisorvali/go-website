@@ -3,14 +3,14 @@
 {{define "content"}}
 <main class="md:w-full">
 
+    <div class="w-full px-4 md:text-2xl">
+        <a href="/posts" class="text-indigo-500 dark:text-indigo-400 mb-8">
+            &lt;- Back to posts
+        </a>
+    </div>
+
     <!-- Centered content container -->
     <div class="w-full px-4 md:text-2xl">
-
-        <div>
-            <a href="/posts" class="text-indigo-500 dark:text-indigo-400 mb-8">
-                ← Back to posts
-            </a>
-        </div>
 
         <h1 class="text-3xl md:text-4xl mt-8 mb-8 md:mb-16 text-center">
             {{.Item.Meta.Title}}
@@ -34,7 +34,7 @@
             <div>
                 {{if .Prev}}
                     {{with .Prev.Meta}}
-                        <a href="{{.Slug}}">← Previous post</a>
+                        <a href="{{.Slug}}"> &lt;- Previous post</a>
                     {{end}}
                 {{end}}
             </div>
@@ -42,7 +42,7 @@
             <div class="md:text-right">
                 {{if .Next}}
                     {{with .Next.Meta}}
-                        <a href="{{.Slug}}">Next post →</a>
+                        <a href="{{.Slug}}">Next post -></a>
                     {{end}}
                 {{end}}
             </div>
