@@ -11,7 +11,7 @@ func (app *application) addRoutes() *http.ServeMux {
 
 	mux := http.NewServeMux()
 	// make images available, longer route must come before the shorter
-	mux.Handle("/images/", http.StripPrefix("/images",
+	mux.Handle("/images/", http.StripPrefix("/images/",
 		http.FileServer(http.Dir(*app.imageDir))))
 	// make static assets available via http.FileServer
 	mux.Handle("/static/", http.StripPrefix("/static/",
