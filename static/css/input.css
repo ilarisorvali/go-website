@@ -2,6 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 html {
+    font-family: "Roboto";
     scrollbar-gutter: stable;
 }
 

@@ -13,6 +13,8 @@ func (app *application) addRoutes() *http.ServeMux {
 	//make static assets available via http.FileServer
 	mux.Handle("/static/", http.StripPrefix("/static/",
 		http.FileServer(http.Dir("static"))))
+	mux.Handle("/images/", http.StripPrefix("/images/",
+		http.FileServer(http.Dir(*app.imageDir))))
 
 	//{$} is a catch-all preventer in go servemux,
 	//ie. all unknown subtrees don't match to /

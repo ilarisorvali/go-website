@@ -1,11 +1,6 @@
 ---
-Title: Marry Me Chicken
-Description: Short description for a recipe
-Slug: marry-me-chicken
-Date: 26.01.2025
+Title: Peruvian ceviche
+Slug: ceviche
+Date: 29.03.2025
 Tags: [kitchen, main]
 ---
-
-# Test
-
-yare yare

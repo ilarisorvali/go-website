@@ -6,6 +6,12 @@ import (
 	"time"
 )
 
+type ContentCache struct {
+	Items   map[string]*ContentItem
+	Blog    []*ContentItem
+	Kitchen []*ContentItem
+}
+
 // Metadata of a post
 // Uses struct tags for marshaling purposes in markdown parsing
 type FrontMatter struct {
@@ -31,7 +37,7 @@ type TemplateData struct {
 	Item  *ContentItem
 	Prev  *ContentItem
 	Next  *ContentItem
-	Items map[string]*ContentItem
+	Items []*ContentItem
 }
 
 // Struct for custom date formatting when marshaling frontmatter

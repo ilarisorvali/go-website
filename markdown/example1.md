@@ -2,7 +2,7 @@
 Title: Building a website in go, a novice approach
 Description: Test Description
 Slug: test-post
-Date: 28.02.2025
+Date: 28.03.2025
 Tags: [post]
 ---
 
@@ -55,7 +55,7 @@ func RunServer() error {
 ```
 
 Here's a picture of the dev setup:
-![image](/static/images/screenshot.png "Dev setup")
+![image](/images/screenshot.png "Dev setup")
 
 
 ### asdasdasdasd

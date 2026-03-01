@@ -13,7 +13,8 @@ import (
 type application struct {
 	logger        *slog.Logger
 	templateCache map[string]*template.Template
-	contentCache  map[string]*models.ContentItem
+	contentCache  *models.ContentCache
+	imageDir      *string
 }
 
 func RunServer() error {
@@ -21,6 +22,8 @@ func RunServer() error {
 	addr := flag.String("addr", ":9000", "HTTP port for the server to use")
 	// Get the markdown content directory as a flag, default to .markdown
 	contentDir := flag.String("contentdir", "./markdown", "directory to load markdown content from")
+	// Get the image content directory as a flag, default to .markdown/images
+	imageDir := flag.String("imagedir", "./markdown/images", "directory to load images content from")
 	flag.Parse()
 
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
@@ -43,6 +46,7 @@ func RunServer() error {
 		logger:        logger,
 		templateCache: templateCache,
 		contentCache:  cache,
+		imageDir:      imageDir,
 	}
 
 	srv := &http.Server{

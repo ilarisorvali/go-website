@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"net/http"
 
 	models "github.com/ilarisorvali/go-website/internal/content"
@@ -15,18 +16,18 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) posts(w http.ResponseWriter, r *http.Request) {
-	tags := []string{"post"}
+	//tags := []string{"post"}
 
 	data := models.TemplateData{
-		Item:  app.LatestPostFromCache(tags),
-		Items: app.FilterCacheByTags(tags),
+		Items: app.contentCache.Blog,
 	}
+	fmt.Println(app.contentCache.Blog)
 	app.render(w, r, http.StatusOK, "posts.html", data)
 }
 
 func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
 	slug := r.PathValue("slug")
-	post := app.contentCache[slug]
+	post := app.contentCache.Items[slug]
 	tags := []string{"post"}
 
 	next, prev := app.NextPrevPostFromCache(slug, tags)
@@ -41,10 +42,9 @@ func (app *application) viewPost(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) kitchen(w http.ResponseWriter, r *http.Request) {
-	kitchenItems := []string{"kitchen"}
 
 	data := models.TemplateData{
-		Items: app.FilterCacheByTags(kitchenItems),
+		Items: app.contentCache.Kitchen,
 	}
 	app.render(w, r, http.StatusOK, "kitchen.html", data)
 }

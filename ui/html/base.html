@@ -5,21 +5,18 @@
         <link rel="stylesheet" href="/static/css/tailwind.css" />
         <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
         <title>{{template "title" .}} - Ilari Sorvali</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-            rel="stylesheet"
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     </head>
 
-    <body class="min-h-screen flex flex-col bg-zinc-900 text-zinc-200">
-        <div class="flex flex-col min-h-screen px-4 md:px-10 mt-8 md:mt-16" >
+    <body class="min-h-screen grid place-items-center bg-zinc-900 text-zinc-200">
+        <div class="flex flex-col px-4 md:px-10 mt-8 md:mt-16" >
             {{template "topbar"}}
 
-            <div class="mx-auto w-full max-w-4xl mt-10 md:mt-28">
+            <div class="min-h-screen mx-auto items-center justify-center w-full max-w-4xl mt-10 md:mt-20">
                 {{template "content" .}}
             </div>
 

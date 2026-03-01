@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"runtime/debug"
 	"slices"
+	"sort"
 	"time"
 
 	models "github.com/ilarisorvali/go-website/internal/content"
@@ -42,14 +43,42 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 }
 
 // TODO add error handling
-func newContentCache(dir *string) (map[string]*models.ContentItem, error) {
-	//Get content directory
-	//load and parse markdown content to cache
-	cache, err := models.LoadContentFiles(*dir)
+func newContentCache(dir *string) (*models.ContentCache, error) {
+	items, err := models.LoadContentFiles(*dir)
 	if err != nil {
 		return nil, err
 	}
+
+	cache := &models.ContentCache{
+		Items:   items,
+		Blog:    []*models.ContentItem{},
+		Kitchen: []*models.ContentItem{},
+	}
+
+	for _, item := range items {
+		if item.Meta.Draft {
+			continue
+		}
+
+		if hasTag(item.Meta.Tags, "kitchen") {
+			cache.Kitchen = append(cache.Kitchen, item)
+		} else {
+			cache.Blog = append(cache.Blog, item)
+		}
+	}
+
+	// Sort all slices newest first
+	sortByDate(cache.Blog)
+	sortByDate(cache.Kitchen)
+
 	return cache, nil
+
+}
+
+func sortByDate(items []*models.ContentItem) {
+	sort.Slice(items, func(i, j int) bool {
+		return items[i].Meta.Date.After(items[j].Meta.Date.Time)
+	})
 }
 
 // A helper function for further post filtering in the templates
@@ -58,7 +87,8 @@ func hasTag(tags []string, tag string) bool {
 	return exists
 }
 
-// Needed to register custom functions for the templates
+// registering custom functions to use in the templates
+// eg. for filtering, footer year, etc.
 var functions = template.FuncMap{
 	"hasTag": hasTag,
 	"Year": func() int {
@@ -119,7 +149,7 @@ func (app *application) FilterCacheByTags(tags []string) map[string]*models.Cont
 	required := tagSet(tags)
 	result := make(map[string]*models.ContentItem)
 
-	for slug, item := range app.contentCache {
+	for slug, item := range app.contentCache.Items {
 		itemTags := tagSet(item.Meta.Tags)
 		match := true
 		for tag := range required {
@@ -137,6 +167,7 @@ func (app *application) FilterCacheByTags(tags []string) map[string]*models.Cont
 	return result
 }
 
+// returns the latest post with tags from the content cache
 func (app *application) LatestPostFromCache(tags []string) *models.ContentItem {
 	var latest *models.ContentItem
 	matchingItems := app.FilterCacheByTags(tags)
@@ -154,6 +185,8 @@ func (app *application) LatestPostFromCache(tags []string) *models.ContentItem {
 	return latest
 }
 
+// returns the next and previous ContentItems
+// relative to the given slug, filtered by the provided tags.
 func (app *application) NextPrevPostFromCache(slug string, tags []string) (next, prev *models.ContentItem) {
 	matchingItems := app.FilterCacheByTags(tags)
 	currentPost, ok := matchingItems[slug]

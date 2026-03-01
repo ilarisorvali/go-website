@@ -6,33 +6,32 @@
     <!-- Centered content container -->
     <div class="w-full px-4 md:text-2xl">
 
-        <div class="w-full px-4 pt-8">
-            <a href="/posts"
-               class="inline-block py-2">
-                ← Back
+        <div>
+            <a href="/posts" class="text-indigo-500 dark:text-indigo-400 mb-8">
+                ← Back to posts
             </a>
         </div>
 
-        <h1 class="text-3xl md:text-4xl mb-8 md:mb-16 text-center">
+        <h1 class="text-3xl md:text-4xl mt-8 mb-8 md:mb-16 text-center">
             {{.Item.Meta.Title}}
         </h1>
 
-        <hr class="w-48 h-1 mx-auto my-4 bg-indigo-500 border-0 rounded-sm md:my-10"/>
+        {{template "horline"}}
 
-        {{if .Item}}
+        {{if .Item.Content}}
         <div class="mx-auto">
-            <article class="prose dark:prose-invert prose-a:text-indigo-500 prose-a:hover:text-indigo-400 prose-a:underline prose-a:underline-offset-1 prose-sup">
+            <article class="w-full max-w-none prose dark:prose-invert prose-a:text-indigo-500 prose-a:hover:text-indigo-400  prose-sup">
                 {{.Item.Content}}
             </article>
         </div>
         {{else}}
-        <h1>The post content couldn't be loaded, sorry.</h1>
+          <h1>The post content couldn't be loaded, sorry.</h1>
         {{end}}
 
-        <hr class="w-48 h-1 mx-auto my-4 bg-indigo-500 border-0 rounded-sm md:my-10"/>
+        {{template "horline"}}
 
-        <div class="flex flex-col md:flex-row gap-4 p-4 mt-8 md:mt-16">
-            <div class="mx-auto text-xl md:text-2xl mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center p-4 mt-8 md:mt-16 text-xl md:text-2xl gap-4">
+            <div>
                 {{if .Prev}}
                     {{with .Prev.Meta}}
                         <a href="{{.Slug}}">← Previous post</a>
@@ -40,13 +39,14 @@
                 {{end}}
             </div>
 
-            <div class="mx-auto text-xl md:text-2xl mb-8">
+            <div class="md:text-right">
                 {{if .Next}}
                     {{with .Next.Meta}}
                         <a href="{{.Slug}}">Next post →</a>
                     {{end}}
                 {{end}}
             </div>
+
         </div>
 
     </div>
