@@ -21,9 +21,9 @@ func RunServer() error {
 	// Get the server port as a flag, default to 9000
 	addr := flag.String("addr", ":9000", "HTTP port for the server to use")
 	// Get the markdown content directory as a flag, default to .markdown
-	contentDir := flag.String("contentdir", "markdown", "directory to load markdown content from")
+	contentDir := flag.String("contentdir", "./markdown", "directory to load markdown content from")
 	// Get the image content directory as a flag, default to .markdown/images
-	imageDir := flag.String("imagedir", "images", "directory to load images content from")
+	imageDir := flag.String("imagedir", "./images", "directory to load images content from")
 	flag.Parse()
 
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
