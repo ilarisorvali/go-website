@@ -8,22 +8,22 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
-    <body class="min-h-screen grid place-items-center bg-zinc-900 text-zinc-200">
+    <body class="min-h-screen flex flex-col justify-between overflow-x-hidden max-w-full w-full bg-zinc-900 text-zinc-200">
         <div class="flex flex-col px-4 md:px-10 mt-8 md:mt-16" >
             {{template "topbar"}}
-
-            <div class="min-h-screen mx-auto items-center justify-center w-full max-w-4xl mt-10 md:mt-20">
-                {{template "content" .}}
-            </div>
-
-            <div class="mt-auto mx-auto text-sm md:text-lg">
-                {{template "footer"}}
-            </div>
         </div>
+
+        <div class="mx-auto md:w-full max-w-4xl mt-10 md:mt-20 grow">
+            {{template "content" .}}
+        </div>
+
+        <div class="mx-auto text-sm md:text-lg text-center mt-auto">
+            {{template "footer"}}
+        </div>
+
 
     </body>
 </html>

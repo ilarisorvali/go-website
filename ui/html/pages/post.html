@@ -1,16 +1,16 @@
 {{ define "title"}} {{.Item.Meta.Title}} {{end}}
 
 {{define "content"}}
-<main class="md:w-full">
+<div class="md:w-full">
 
-    <div class="w-full px-4 md:text-2xl">
+    <div class="px-4 md:text-2xl">
         <a href="/posts" class="text-indigo-500 mb-8">
             &lt;- Back to posts
         </a>
     </div>
 
     <!-- Centered content container -->
-    <div class="w-full px-4 md:text-2xl">
+    <div class="">
 
         <h1 class="text-3xl md:text-4xl mt-8 mb-8 md:mb-16 text-center">
             {{.Item.Meta.Title}}
@@ -19,8 +19,8 @@
         {{template "horline"}}
 
         {{if .Item.Content}}
-        <div class="mx-auto">
-            <article class="w-full max-w-none prose dark:prose-invert prose-a:text-indigo-500 prose-a:hover:text-indigo-400  prose-sup">
+        <div>
+            <article class="prose w-full max-w-full dark:prose-invert prose-pre:max-w-full prose-pre:overflow-x-auto">
                 {{.Item.Content}}
             </article>
         </div>
@@ -30,7 +30,7 @@
 
         {{template "horline"}}
 
-        <div class="grid grid-cols-1 md:grid-cols-2 items-center p-4 mt-8 md:mt-16 text-xl md:text-2xl gap-4">
+        <div class="grid grid-cols-2 items-center p-4 mt-8 md:mt-16 text-xl md:text-2xl gap-4">
             <div>
                 {{if .Prev}}
                     {{with .Prev.Meta}}
@@ -39,7 +39,7 @@
                 {{end}}
             </div>
 
-            <div class="md:text-right">
+            <div class="text-right">
                 {{if .Next}}
                     {{with .Next.Meta}}
                         <a href="{{.Slug}}">Next post -></a>
@@ -50,5 +50,5 @@
         </div>
 
     </div>
-</main>
+</div>
 {{end}}

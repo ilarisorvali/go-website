@@ -9,15 +9,16 @@
       {{range .Items}}
         {{with .Meta}}
         <li class="flex gap-4 md:text-xl">
+
           <span class="w-32 shrink-0 tabular-nums">
             {{.Date.Format "2006 Jan 02"}}
           </span>
+
           <a href="{{.Slug}}">
             {{.Title}}
           </a>
+
         </li>
-
-
         {{end}}
       {{end}}
     </ul>
