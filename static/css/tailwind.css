@@ -7,9 +7,12 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-green-400: oklch(79.2% 0.209 151.711);
+    --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-indigo-400: oklch(67.3% 0.182 276.935);
     --color-indigo-500: oklch(58.5% 0.233 277.117);
     --color-zinc-200: oklch(92% 0.004 286.32);
+    --color-zinc-700: oklch(37% 0.013 285.805);
     --color-zinc-900: oklch(21% 0.006 285.885);
     --spacing: 0.25rem;
     --container-md: 28rem;
@@ -36,6 +39,8 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --font-slab: "Roboto Slab", serif;
+    --font-roboto: "Roboto", sans-serif;
   }
 }
 @layer base {
@@ -192,15 +197,6 @@
   }
   .static {
     position: static;
-  }
-  .sticky {
-    position: sticky;
-  }
-  .top-\[100vh\] {
-    top: 100vh;
-  }
-  .top-full {
-    top: 100%;
   }
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
@@ -650,9 +646,6 @@
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
   }
-  .mt-auto {
-    margin-top: auto;
-  }
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
@@ -668,8 +661,11 @@
   .mb-12 {
     margin-bottom: calc(var(--spacing) * 12);
   }
-  .mb-auto {
-    margin-bottom: auto;
+  .box-border {
+    box-sizing: border-box;
+  }
+  .box-content {
+    box-sizing: content-box;
   }
   .contents {
     display: contents;
@@ -691,12 +687,6 @@
   }
   .h-40 {
     height: calc(var(--spacing) * 40);
-  }
-  .h-fit {
-    height: fit-content;
-  }
-  .h-full {
-    height: 100%;
   }
   .min-h-screen {
     min-height: 100vh;
@@ -755,6 +745,9 @@
   .items-center {
     align-items: center;
   }
+  .justify-between {
+    justify-content: space-between;
+  }
   .justify-center {
     justify-content: center;
   }
@@ -781,6 +774,9 @@
   .overflow-x-hidden {
     overflow-x: hidden;
   }
+  .rounded {
+    border-radius: 0.25rem;
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -788,6 +784,13 @@
   .border-0 {
     border-style: var(--tw-border-style);
     border-width: 0px;
+  }
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
+  .border-zinc-700 {
+    border-color: var(--color-zinc-700);
   }
   .bg-indigo-500 {
     background-color: var(--color-indigo-500);
@@ -798,8 +801,14 @@
   .object-cover {
     object-fit: cover;
   }
+  .p-1 {
+    padding: calc(var(--spacing) * 1);
+  }
   .p-4 {
     padding: calc(var(--spacing) * 4);
+  }
+  .p-6 {
+    padding: calc(var(--spacing) * 6);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
@@ -812,6 +821,9 @@
   }
   .text-right {
     text-align: right;
+  }
+  .font-roboto {
+    font-family: var(--font-roboto);
   }
   .text-2xl {
     font-size: var(--text-2xl);
@@ -865,6 +877,26 @@
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+  .md\:container {
+    @media (width >= 48rem) {
+      width: 100%;
+      @media (width >= 40rem) {
+        max-width: 40rem;
+      }
+      @media (width >= 48rem) {
+        max-width: 48rem;
+      }
+      @media (width >= 64rem) {
+        max-width: 64rem;
+      }
+      @media (width >= 80rem) {
+        max-width: 80rem;
+      }
+      @media (width >= 96rem) {
+        max-width: 96rem;
+      }
+    }
   }
   .md\:mt-16 {
     @media (width >= 48rem) {
@@ -979,8 +1011,35 @@
   }
 }
 html {
-  font-family: "Roboto";
   scrollbar-gutter: stable;
+}
+@font-face {
+  font-family: "Roboto Slab";
+  src: url("https://cdn.sorvali.net/fonts/RobotoSlab-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto Slab";
+  src: url("https://cdn.sorvali.net/fonts/RobotoSlab-Bold.ttf") format("ttf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("https://cdn.sorvali.net/fonts/Roboto-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("https://cdn.sorvali.net/fonts/Roboto-Bold.ttf") format("ttf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 @layer base {
   a {

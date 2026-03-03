@@ -5,24 +5,22 @@
         <link rel="stylesheet" href="/static/css/tailwind.css" />
         <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
         <title>{{template "title" .}} - Ilari Sorvali</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://cdn.sorvali.net">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
-    <body class="min-h-screen justify-between overflow-x-hidden bg-zinc-900 text-zinc-200">
+    <body class="justify-between overflow-x-hidden bg-zinc-900 text-zinc-200">
         <div class="flex flex-col px-4 md:px-10 mt-8 md:mt-16" >
             {{template "topbar"}}
         </div>
 
-        <div class="mx-auto md:w-full max-w-4xl mt-10 md:mt-20 grow box-border">
+        <div class="px-6 mx-auto md:w-full max-w-4xl mt-10 md:mt-20">
             {{template "content" .}}
         </div>
 
-        <!--<div class="mx-auto text-sm md:text-lg text-center bottom-0 mt-10">
+        <div class="mx-auto text-sm md:text-lg text-center bottom-0 mt-10">
             {{template "footer"}}
-        </div>-->
+        </div>
 
 
     </body>

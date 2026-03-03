@@ -3,15 +3,13 @@
 {{define "content"}}
 <div class="md:w-full">
 
-    <div class="px-4 md:text-2xl">
+    <div class="px-4 text-2xl">
         <a href="/posts" class="text-indigo-500 mb-8">
             &lt;- Back to posts
         </a>
     </div>
 
-    <!-- Centered content container -->
-    <div class="">
-
+    <div>
         <h1 class="text-3xl md:text-4xl mt-8 mb-8 md:mb-16 text-center">
             {{.Item.Meta.Title}}
         </h1>
@@ -20,12 +18,12 @@
 
         {{if .Item.Content}}
         <div>
-            <article class="prose w-full max-w-full dark:prose-invert prose-pre:text-s prose-pre:max-w-full prose-pre:overflow-x-auto">
+            <article class="font-roboto prose w-full max-w-full dark:prose-invert prose-pre:text-s prose-pre:max-w-full prose-pre:overflow-x-auto">
                 {{.Item.Content}}
             </article>
         </div>
         {{else}}
-          <h1>The post content couldn't be loaded, sorry.</h1>
+          <h1 class="text-center">The post content couldn't be loaded, sorry.</h1>
         {{end}}
 
         {{template "horline"}}
