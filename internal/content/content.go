@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	fm "github.com/adrg/frontmatter"
+	figure "github.com/mangoumbrella/goldmark-figure"
 	"github.com/yuin/goldmark"
 	hl "github.com/yuin/goldmark-highlighting/v2"
 	"github.com/yuin/goldmark/extension"
@@ -18,6 +19,7 @@ import (
 func ParseMDToContent(file []byte) (*ContentItem, error) {
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
+			figure.Figure,
 			extension.GFM,
 			extension.Footnote,
 			hl.NewHighlighting(
@@ -38,14 +40,18 @@ func ParseMDToContent(file []byte) (*ContentItem, error) {
 	}
 
 	// Parse the rest of the file into html content
+	// First create memory buffer that implements io.Writer
+	// Context is needed to hold state during conversion (footnotes, links, etc.)
 	var buf bytes.Buffer
 	context := parser.NewContext()
 
+	// Convert rest to HTML into buf with parser context
 	if err := markdown.Convert(rest, &buf, parser.WithContext(context)); err != nil {
 		return nil, err
 	}
 	htmlTemplate := template.HTML(buf.String())
 
+	// Final ContentItem
 	item := ContentItem{
 		Meta:    meta,
 		Content: htmlTemplate,

@@ -4,21 +4,24 @@
 <div class="md:w-full">
 
     <div class="px-4 text-2xl text-center md:text-left">
-        <a href="/posts" class="text-indigo-500 mb-8">
+        <a href="/posts" class="mb-8">
             &lt;- Back to posts
         </a>
     </div>
 
     <div>
-        <h1 class="text-3xl md:text-5xl mt-8 mb-8 md:mb-16 text-center">
+        <h1 class="text-3xl md:text-5xl mt-8 mb-4 md:mb-10 text-center">
             {{.Item.Meta.Title}}
         </h1>
 
-        {{template "horline"}}
+        <div class="md:text-left text-zinc-500">
+            <time>{{.Item.Meta.Date.Format "02 Jan 2006"}}</time>
+        </div>
+
 
         {{if .Item.Content}}
         <div>
-            <article class="font-roboto prose w-full dark:prose-a:text-indigo-500 max-w-full dark:prose-invert prose-pre:text-s prose-pre:max-w-full prose-pre:overflow-x-auto">
+            <article class="font-roboto w-full markdown a:text-indigo-500 max-w-full overflow-x-auto">
                 {{.Item.Content}}
             </article>
         </div>
