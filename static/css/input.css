@@ -1,6 +1,6 @@
-@import "tailwindcss";
 @import "./markdown.css";
 @import "./fonts.css";
+@import "tailwindcss";
 
 html {
   scrollbar-gutter: stable;
@@ -8,6 +8,6 @@ html {
 
 @layer base {
   a {
-    @apply text-indigo-500 hover:text-indigo-400 transition-colors underline-offset-1 underline;
+    @apply text-indigo-400 hover:text-indigo-300 transition-colors underline-offset-1 underline;
   }
 }

@@ -1,50 +1,217 @@
-/*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */
 @layer properties;
-@layer theme, base, components, utilities;
-@layer theme {
-  :root, :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Monaspace";
+  src: url("https://cdn.sorvali.net/fonts/Monaspace/MonaspaceArgon-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("https://cdn.sorvali.net/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root, :host {
+  --font-merriweather: "Merriweather" serif;
+  --font-inter: "Inter" sans-serif;
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-indigo-400: oklch(67.3% 0.182 276.935);
-    --color-indigo-500: oklch(58.5% 0.233 277.117);
-    --color-gray-100: oklch(96.7% 0.003 264.542);
-    --color-gray-300: oklch(87.2% 0.01 258.338);
-    --color-zinc-100: oklch(96.7% 0.001 286.375);
-    --color-zinc-200: oklch(92% 0.004 286.32);
-    --color-zinc-400: oklch(70.5% 0.015 286.067);
-    --color-zinc-500: oklch(55.2% 0.016 285.938);
-    --color-zinc-800: oklch(27.4% 0.006 286.033);
-    --color-zinc-900: oklch(21% 0.006 285.885);
-    --spacing: 0.25rem;
-    --container-md: 28rem;
-    --container-lg: 32rem;
-    --container-3xl: 48rem;
-    --container-4xl: 56rem;
-    --container-5xl: 64rem;
-    --text-sm: 0.875rem;
-    --text-sm--line-height: calc(1.25 / 0.875);
-    --text-lg: 1.125rem;
-    --text-lg--line-height: calc(1.75 / 1.125);
-    --text-xl: 1.25rem;
-    --text-xl--line-height: calc(1.75 / 1.25);
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: calc(2 / 1.5);
-    --text-3xl: 1.875rem;
-    --text-3xl--line-height: calc(2.25 / 1.875);
-    --text-5xl: 3rem;
-    --text-5xl--line-height: 1;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --leading-relaxed: 1.625;
-    --default-transition-duration: 150ms;
-    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    --default-font-family: var(--font-sans);
-    --default-mono-font-family: var(--font-mono);
-    --font-roboto: "Roboto", sans-serif;
+  --color-indigo-300: oklch(78.5% 0.115 274.713);
+  --color-indigo-400: oklch(67.3% 0.182 276.935);
+  --color-indigo-500: oklch(58.5% 0.233 277.117);
+  --color-gray-100: oklch(96.7% 0.003 264.542);
+  --color-zinc-200: oklch(92% 0.004 286.32);
+  --color-zinc-400: oklch(70.5% 0.015 286.067);
+  --color-zinc-500: oklch(55.2% 0.016 285.938);
+  --color-zinc-800: oklch(27.4% 0.006 286.033);
+  --color-neutral-900: oklch(20.5% 0 0);
+  --spacing: 0.25rem;
+  --container-md: 28rem;
+  --container-lg: 32rem;
+  --container-3xl: 48rem;
+  --container-4xl: 56rem;
+  --container-5xl: 64rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-lg: 1.125rem;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-xl: 1.25rem;
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --leading-relaxed: 1.625;
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --default-font-family: var(--font-sans);
+  --default-mono-font-family: var(--font-mono);
+}
+@layer components {
+  .markdown {
+    --body-color: --color-zinc-900;
+    --heading-color: --color-zinc-900;
+    --muted-color: var(--color-zinc-400);
+    --blockquote-color: var(--color-zinc-800);
+    --border-color: var(--color-zinc-200);
+    --link-color: var(--color-indigo-500);
+    --link-hover-color: var(--color-indigo-400);
+    --code-bg: var(--color-gray-100);
+    font-family: var(--font-merriweather);
+    line-height: 1.7;
+    font-size: var(--text-lg);
+  }
+  .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+  }
+  .markdown h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-semibold);
+    color: --heading-color;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .markdown h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--heading-color);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .markdown h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--heading-color);
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .markdown p {
+    margin-bottom: 1rem;
+  }
+  .markdown a {
+    color: var(--link-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .markdown a:hover {
+    color: var(--link-hover-color);
+  }
+  .markdown ul, .markdown ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  .markdown ul {
+    list-style-type: disc;
+  }
+  .markdown ol {
+    list-style-type: decimal;
+  }
+  .markdown li {
+    margin-bottom: 0.5rem;
+  }
+  .markdown blockquote p {
+    margin: 0;
+  }
+  .markdown blockquote {
+    background: var(--blockquote-color);
+    border-left: 6px solid var(--link-color);
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+  }
+  .markdown code {
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.375rem;
+    font-size: 0.875em;
+    font-family: "Monaspace";
+  }
+  .markdown pre {
+    padding: 0.5rem;
+    border-radius: 0.65rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  .markdown pre code {
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    font-family: "Monaspace";
+  }
+  .markdown img {
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+  }
+  .markdown figure {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  .markdown figure img {
+    display: block;
+    margin: 0 auto;
+  }
+  .markdown figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--muted-color);
+  }
+  .markdown hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
   }
 }
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Monaspace";
+  src: url("https://cdn.sorvali.net/fonts/Monaspace/MonaspaceArgon-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("https://cdn.sorvali.net/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@layer theme, base, components, utilities;
+@layer theme;
 @layer base {
   *, ::after, ::before, ::backdrop, ::file-selector-button {
     box-sizing: border-box;
@@ -264,7 +431,7 @@
     height: calc(var(--spacing) * 40);
   }
   .w-3\/4 {
-    width: calc(3/4 * 100%);
+    width: calc(3 / 4 * 100%);
   }
   .w-32 {
     width: calc(var(--spacing) * 32);
@@ -338,8 +505,8 @@
   .bg-indigo-500 {
     background-color: var(--color-indigo-500);
   }
-  .bg-zinc-900 {
-    background-color: var(--color-zinc-900);
+  .bg-neutral-900 {
+    background-color: var(--color-neutral-900);
   }
   .object-cover {
     object-fit: cover;
@@ -359,8 +526,8 @@
   .text-right {
     text-align: right;
   }
-  .font-roboto {
-    font-family: var(--font-roboto);
+  .font-inter {
+    font-family: var(--font-inter);
   }
   .text-2xl {
     font-size: var(--text-2xl);
@@ -495,144 +662,12 @@
     }
   }
 }
-@layer components {
-  .markdown {
-    --body-color: var(--color-zinc-200);
-    --heading-color: var(--color-zinc-100);
-    --muted-color: var(--color-zinc-400);
-    --blockquote-color: var(--color-zinc-800);
-    --border-color: var(--color-zinc-200);
-    --link-color: var(--color-indigo-500);
-    --link-hover-color: var(--color-indigo-400);
-    --code-bg: var(--color-gray-100);
-    line-height: 1.7;
-    color: var(--body-color);
-  }
-  .markdown h1 {
-    font-size: var(--text-3xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--heading-color);
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  .markdown h2 {
-    font-size: var(--text-2xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--heading-color);
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-  }
-  .markdown h3 {
-    font-size: var(--text-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--heading-color);
-    margin-top: 1.75rem;
-    margin-bottom: 0.5rem;
-  }
-  .markdown p {
-    margin-bottom: 1rem;
-  }
-  .markdown a {
-    color: var(--link-color);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  .markdown a:hover {
-    color: var(--link-hover-color);
-  }
-  .markdown ul, .markdown ol {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-  }
-  .markdown ul {
-    list-style-type: disc;
-  }
-  .markdown ol {
-    list-style-type: decimal;
-  }
-  .markdown li {
-    margin-bottom: 0.5rem;
-  }
-  .markdown blockquote {
-    background: var(--blockquote-color);
-    border-left: 4px solid var(--color-gray-300);
-    padding: 1rem 1.25rem;
-  }
-  .markdown code {
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.375rem;
-    font-size: 0.875em;
-    font-family: "JetBrainsMono";
-  }
-  .markdown pre {
-    padding: 1rem;
-    border-radius: 0.85rem;
-    overflow-x: auto;
-    margin: 1.5rem 0;
-  }
-  .markdown pre code {
-    background: transparent;
-    padding: 0;
-    font-size: 0.875rem;
-    line-height: 1.6;
-  }
-  .markdown img {
-    border-radius: 0.75rem;
-    margin: 1.5rem 0;
-  }
-  .markdown figure {
-    margin: 1.5rem 0;
-    text-align: center;
-  }
-  .markdown figure img {
-    display: block;
-    margin: 0 auto;
-  }
-  .markdown figcaption {
-    margin-top: 0.75rem;
-    font-size: 0.875rem;
-    color: var(--muted-color);
-  }
-  .markdown hr {
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: 2rem 0;
-  }
-}
-@font-face {
-  font-family: "Roboto";
-  src: url("https://cdn.sorvali.net/fonts/Roboto/Roboto-Regular.ttf") format("ttf");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Roboto";
-  src: url("https://cdn.sorvali.net/fonts/Roboto/Roboto-Bold.ttf") format("ttf");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "JetBrainsMono";
-  src: url("https://cdn.sorvali.net/fonts/JetBrainsMono/JetBrainsMono-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("https://cdn.sorvali.net/fonts/Montserrat/Montserrat-Regular.ttf") format("ttf");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
 html {
   scrollbar-gutter: stable;
 }
 @layer base {
   a {
-    color: var(--color-indigo-500);
+    color: var(--color-indigo-400);
     text-decoration-line: underline;
     text-underline-offset: 1px;
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
@@ -640,7 +675,7 @@ html {
     transition-duration: var(--tw-duration, var(--default-transition-duration));
     &:hover {
       @media (hover: hover) {
-        color: var(--color-indigo-400);
+        color: var(--color-indigo-300);
       }
     }
   }
