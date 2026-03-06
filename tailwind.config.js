@@ -4,9 +4,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        roboto: ['"Roboto"', "sans-serif"],
+        inter: ["Inter", "sans-serif"],
+        merriweather: ["Merriweather", "serif"],
+        monaspace: ["Monaspace", "monospace"],
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
 };
