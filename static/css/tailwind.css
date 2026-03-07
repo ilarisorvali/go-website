@@ -1,11 +1,39 @@
 /*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */
 @layer properties;
-@layer theme, base, components, utilities;
-@layer theme {
-  :root, :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Monaspace";
+  src: url("https://cdn.sorvali.net/fonts/Monaspace/MonaspaceArgon-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("https://cdn.sorvali.net/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root, :host {
+  --font-merriweather: "Merriweather" serif;
+  --font-inter: "Inter" sans-serif;
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-indigo-300: oklch(78.5% 0.115 274.713);
     --color-indigo-400: oklch(67.3% 0.182 276.935);
@@ -45,6 +73,36 @@
     --default-mono-font-family: var(--font-mono);
   }
 }
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Monaspace";
+  src: url("https://cdn.sorvali.net/fonts/Monaspace/MonaspaceArgon-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("https://cdn.sorvali.net/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@layer theme, base, components, utilities;
+@layer theme;
 @layer base {
   *, ::after, ::before, ::backdrop, ::file-selector-button {
     box-sizing: border-box;

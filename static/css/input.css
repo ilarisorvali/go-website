@@ -1,6 +1,6 @@
-@import "tailwindcss";
 @import "./markdown.css";
 @import "./fonts.css";
+@import "tailwindcss";
 
 html {
   scrollbar-gutter: stable;
