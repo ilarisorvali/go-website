@@ -12,10 +12,11 @@
     --color-indigo-500: oklch(58.5% 0.233 277.117);
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-zinc-200: oklch(92% 0.004 286.32);
-    --color-zinc-400: oklch(70.5% 0.015 286.067);
     --color-zinc-500: oklch(55.2% 0.016 285.938);
-    --color-zinc-800: oklch(27.4% 0.006 286.033);
     --color-neutral-900: oklch(20.5% 0 0);
+    --color-stone-200: oklch(92.3% 0.003 48.717);
+    --color-stone-400: oklch(70.9% 0.01 56.259);
+    --color-stone-800: oklch(26.8% 0.007 34.298);
     --spacing: 0.25rem;
     --container-md: 28rem;
     --container-lg: 32rem;
@@ -34,6 +35,7 @@
     --text-3xl--line-height: calc(2.25 / 1.875);
     --text-5xl: 3rem;
     --text-5xl--line-height: 1;
+    --font-weight-light: 300;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --leading-relaxed: 1.625;
@@ -520,11 +522,11 @@
 }
 @layer components {
   .markdown {
-    --body-color: --color-zinc-900;
-    --heading-color: --color-zinc-900;
-    --muted-color: var(--color-zinc-400);
-    --blockquote-color: var(--color-zinc-800);
-    --border-color: var(--color-zinc-200);
+    --body-color: var(--color-stone-200);
+    --heading-color: var(--color-stone-200);
+    --muted-color: var(--color-stone-400);
+    --blockquote-color: var(--color-stone-800);
+    --border-color: var(--color-stone-200);
     --link-color: var(--color-indigo-500);
     --link-hover-color: var(--color-indigo-400);
     --code-bg: var(--color-gray-100);
@@ -533,6 +535,7 @@
     font-size: var(--text-lg);
   }
   .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
+    color: var(--heading-color);
     font-family: "Inter", system-ui, sans-serif;
   }
   .markdown h1 {
@@ -557,6 +560,8 @@
     margin-bottom: 0.5rem;
   }
   .markdown p {
+    color: var(--body-color);
+    font-weight: var(--font-weight-light);
     margin-bottom: 1rem;
   }
   .markdown a {
