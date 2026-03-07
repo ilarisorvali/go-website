@@ -2,11 +2,11 @@
 
 @layer components {
   .markdown {
-    --body-color: var(--color-stone-200);
-    --heading-color: var(--color-stone-200);
-    --muted-color: var(--color-stone-400);
-    --blockquote-color: var(--color-stone-800);
-    --border-color: var(--color-stone-200);
+    --body-color: --color-zinc-900;
+    --heading-color: --color-zinc-900;
+    --muted-color: var(--color-zinc-400);
+    --blockquote-color: var(--color-zinc-800);
+    --border-color: var(--color-zinc-200);
     --link-color: var(--color-indigo-500);
     --link-hover-color: var(--color-indigo-400);
     --code-bg: var(--color-gray-100);
@@ -19,7 +19,6 @@
   .markdown h2,
   .markdown h3,
   .markdown h4 {
-    color: var(--heading-color);
     font-family: "Inter", system-ui, sans-serif;
   }
 
@@ -48,8 +47,6 @@
   }
 
   .markdown p {
-    color: var(--body-color);
-    font-weight: var(--font-weight-light);
     margin-bottom: 1rem;
   }
 
