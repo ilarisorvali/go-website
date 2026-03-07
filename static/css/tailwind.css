@@ -35,151 +35,42 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-  --color-indigo-300: oklch(78.5% 0.115 274.713);
-  --color-indigo-400: oklch(67.3% 0.182 276.935);
-  --color-indigo-500: oklch(58.5% 0.233 277.117);
-  --color-gray-100: oklch(96.7% 0.003 264.542);
-  --color-zinc-200: oklch(92% 0.004 286.32);
-  --color-zinc-400: oklch(70.5% 0.015 286.067);
-  --color-zinc-500: oklch(55.2% 0.016 285.938);
-  --color-zinc-800: oklch(27.4% 0.006 286.033);
-  --color-neutral-900: oklch(20.5% 0 0);
-  --spacing: 0.25rem;
-  --container-md: 28rem;
-  --container-lg: 32rem;
-  --container-3xl: 48rem;
-  --container-4xl: 56rem;
-  --container-5xl: 64rem;
-  --text-sm: 0.875rem;
-  --text-sm--line-height: calc(1.25 / 0.875);
-  --text-lg: 1.125rem;
-  --text-lg--line-height: calc(1.75 / 1.125);
-  --text-xl: 1.25rem;
-  --text-xl--line-height: calc(1.75 / 1.25);
-  --text-2xl: 1.5rem;
-  --text-2xl--line-height: calc(2 / 1.5);
-  --text-3xl: 1.875rem;
-  --text-3xl--line-height: calc(2.25 / 1.875);
-  --text-5xl: 3rem;
-  --text-5xl--line-height: 1;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --leading-relaxed: 1.625;
-  --default-transition-duration: 150ms;
-  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  --default-font-family: var(--font-sans);
-  --default-mono-font-family: var(--font-mono);
-}
-@layer components {
-  .markdown {
-    --body-color: --color-zinc-900;
-    --heading-color: --color-zinc-900;
-    --muted-color: var(--color-zinc-400);
-    --blockquote-color: var(--color-zinc-800);
-    --border-color: var(--color-zinc-200);
-    --link-color: var(--color-indigo-500);
-    --link-hover-color: var(--color-indigo-400);
-    --code-bg: var(--color-gray-100);
-    font-family: var(--font-merriweather);
-    line-height: 1.7;
-    font-size: var(--text-lg);
-  }
-  .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
-  }
-  .markdown h1 {
-    font-size: var(--text-3xl);
-    font-weight: var(--font-weight-semibold);
-    color: --heading-color;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  .markdown h2 {
-    font-size: var(--text-2xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--heading-color);
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-  }
-  .markdown h3 {
-    font-size: var(--text-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--heading-color);
-    margin-top: 1.75rem;
-    margin-bottom: 0.5rem;
-  }
-  .markdown p {
-    margin-bottom: 1rem;
-  }
-  .markdown a {
-    color: var(--link-color);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  .markdown a:hover {
-    color: var(--link-hover-color);
-  }
-  .markdown ul, .markdown ol {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-  }
-  .markdown ul {
-    list-style-type: disc;
-  }
-  .markdown ol {
-    list-style-type: decimal;
-  }
-  .markdown li {
-    margin-bottom: 0.5rem;
-  }
-  .markdown blockquote p {
-    margin: 0;
-  }
-  .markdown blockquote {
-    background: var(--blockquote-color);
-    border-left: 6px solid var(--link-color);
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0;
-  }
-  .markdown code {
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.375rem;
-    font-size: 0.875em;
-    font-family: "Monaspace";
-  }
-  .markdown pre {
-    padding: 0.5rem;
-    border-radius: 0.65rem;
-    overflow-x: auto;
-    margin: 1rem 0;
-  }
-  .markdown pre code {
-    padding: 0;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    font-family: "Monaspace";
-  }
-  .markdown img {
-    border-radius: 0.75rem;
-    margin: 1.5rem 0;
-  }
-  .markdown figure {
-    margin: 1.5rem 0;
-    text-align: center;
-  }
-  .markdown figure img {
-    display: block;
-    margin: 0 auto;
-  }
-  .markdown figcaption {
-    margin-top: 0.75rem;
-    font-size: 0.875rem;
-    color: var(--muted-color);
-  }
-  .markdown hr {
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: 2rem 0;
+    --color-indigo-300: oklch(78.5% 0.115 274.713);
+    --color-indigo-400: oklch(67.3% 0.182 276.935);
+    --color-indigo-500: oklch(58.5% 0.233 277.117);
+    --color-gray-100: oklch(96.7% 0.003 264.542);
+    --color-zinc-200: oklch(92% 0.004 286.32);
+    --color-zinc-500: oklch(55.2% 0.016 285.938);
+    --color-neutral-900: oklch(20.5% 0 0);
+    --color-stone-200: oklch(92.3% 0.003 48.717);
+    --color-stone-400: oklch(70.9% 0.01 56.259);
+    --color-stone-800: oklch(26.8% 0.007 34.298);
+    --spacing: 0.25rem;
+    --container-md: 28rem;
+    --container-lg: 32rem;
+    --container-3xl: 48rem;
+    --container-4xl: 56rem;
+    --container-5xl: 64rem;
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --text-5xl: 3rem;
+    --text-5xl--line-height: 1;
+    --font-weight-light: 300;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --leading-relaxed: 1.625;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
   }
 }
 @font-face {
@@ -526,9 +417,6 @@
   .text-right {
     text-align: right;
   }
-  .font-inter {
-    font-family: var(--font-inter);
-  }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
@@ -661,6 +549,177 @@
       line-height: var(--tw-leading, var(--text-xl--line-height));
     }
   }
+}
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Monaspace";
+  src: url("https://cdn.sorvali.net/fonts/Monaspace/MonaspaceArgon-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("https://cdn.sorvali.net/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@layer components {
+  .markdown {
+    --body-color: var(--color-stone-200);
+    --heading-color: var(--color-stone-200);
+    --muted-color: var(--color-stone-400);
+    --blockquote-color: var(--color-stone-800);
+    --border-color: var(--color-stone-200);
+    --link-color: var(--color-indigo-500);
+    --link-hover-color: var(--color-indigo-400);
+    --code-bg: var(--color-gray-100);
+    font-family: "Merriweather";
+    line-height: 1.7;
+    font-size: var(--text-lg);
+  }
+  .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
+    color: var(--heading-color);
+    font-family: "Inter", system-ui, sans-serif;
+  }
+  .markdown h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-semibold);
+    color: --heading-color;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .markdown h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--heading-color);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .markdown h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--heading-color);
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .markdown p {
+    color: var(--body-color);
+    font-weight: var(--font-weight-light);
+    margin-bottom: 1rem;
+  }
+  .markdown a {
+    color: var(--link-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .markdown a:hover {
+    color: var(--link-hover-color);
+  }
+  .markdown ul, .markdown ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  .markdown ul {
+    list-style-type: disc;
+  }
+  .markdown ol {
+    list-style-type: decimal;
+  }
+  .markdown li {
+    margin-bottom: 0.5rem;
+  }
+  .markdown blockquote p {
+    margin: 0;
+  }
+  .markdown blockquote {
+    background: var(--blockquote-color);
+    border-left: 6px solid var(--link-color);
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+  }
+  .markdown code {
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.375rem;
+    font-size: 0.875em;
+    font-family: "Monaspace";
+  }
+  .markdown pre {
+    padding: 0.5rem;
+    border-radius: 0.65rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  .markdown pre code {
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    font-family: "Monaspace";
+  }
+  .markdown img {
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+  }
+  .markdown figure {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  .markdown figure img {
+    display: block;
+    margin: 0 auto;
+  }
+  .markdown figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--muted-color);
+  }
+  .markdown hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+  }
+}
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Merriweather";
+  src: url("https://cdn.sorvali.net/fonts/Merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Monaspace";
+  src: url("https://cdn.sorvali.net/fonts/Monaspace/MonaspaceArgon-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("https://cdn.sorvali.net/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
 }
 html {
   scrollbar-gutter: stable;
