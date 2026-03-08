@@ -19,8 +19,6 @@ func (app *application) generateAtomFeed() {
 		Created: now,
 	}
 
-	fmt.Println("asdasdasdasd")
-
 	for _, item := range app.contentCache.Blog {
 		fmt.Println(item.Meta.Date)
 		link := url + item.Meta.Slug
@@ -40,7 +38,6 @@ func (app *application) generateAtomFeed() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(atom)
 
 	atomBytes := []byte(atom)
 

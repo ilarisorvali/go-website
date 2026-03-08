@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 
 	models "github.com/ilarisorvali/go-website/internal/content"
@@ -21,7 +20,6 @@ func (app *application) posts(w http.ResponseWriter, r *http.Request) {
 	data := models.TemplateData{
 		Items: app.contentCache.Blog,
 	}
-	fmt.Println(app.contentCache.Blog)
 	app.render(w, r, http.StatusOK, "posts.html", data)
 }
 
