@@ -52,12 +52,12 @@
 
   .markdown a {
     color: var(--link-color);
-    text-decoration: underline;
     text-underline-offset: 2px;
   }
 
   .markdown a:hover {
     color: var(--link-hover-color);
+    text-decoration: underline;
   }
 
   .markdown ul,
@@ -135,10 +135,35 @@
     color: var(--muted-color);
   }
 
+  /*.markdown li:has(input[type="checkbox"]) {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .markdown input[type="checkbox"] {
+    color: var(--link-color);
+    margin-top: 0.35rem;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
+  .markdown li:has(input[type="checkbox"]:checked) {
+    color: var(--muted-color);
+    text-decoration: line-through;
+  }*/
+
   /* Horizontal rule */
   .markdown hr {
     border: none;
     border-top: 1px solid var(--border-color);
     margin: 2rem 0;
+  }
+
+  .markdown footnotes {
+    font-family: var(--font-inter);
   }
 }

@@ -12,7 +12,6 @@
     --color-indigo-400: oklch(67.3% 0.182 276.935);
     --color-indigo-500: oklch(58.5% 0.233 277.117);
     --color-zinc-200: oklch(92% 0.004 286.32);
-    --color-zinc-500: oklch(55.2% 0.016 285.938);
     --color-neutral-100: oklch(97% 0 0);
     --color-neutral-200: oklch(92.2% 0 0);
     --color-neutral-400: oklch(70.8% 0 0);
@@ -44,6 +43,7 @@
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --font-monaspace: "Monaspace" monospace;
+    --font-inter: "Inter" sans-serif;
   }
 }
 @layer base {
@@ -267,9 +267,6 @@
   .w-3\/4 {
     width: calc(3 / 4 * 100%);
   }
-  .w-32 {
-    width: calc(var(--spacing) * 32);
-  }
   .w-40 {
     width: calc(var(--spacing) * 40);
   }
@@ -302,6 +299,9 @@
   }
   .items-center {
     align-items: center;
+  }
+  .justify-between {
+    justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
@@ -388,11 +388,15 @@
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
   }
+  .font-semibold {
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+  }
+  .text-neutral-400 {
+    color: var(--color-neutral-400);
+  }
   .text-zinc-200 {
     color: var(--color-zinc-200);
-  }
-  .text-zinc-500 {
-    color: var(--color-zinc-500);
   }
   .tabular-nums {
     --tw-numeric-spacing: tabular-nums;
@@ -446,11 +450,6 @@
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
-    }
-  }
-  .md\:items-center {
-    @media (width >= 48rem) {
-      align-items: center;
     }
   }
   .md\:items-start {
@@ -564,11 +563,11 @@
   }
   .markdown a {
     color: var(--link-color);
-    text-decoration: underline;
     text-underline-offset: 2px;
   }
   .markdown a:hover {
     color: var(--link-hover-color);
+    text-decoration: underline;
   }
   .markdown ul, .markdown ol {
     margin: 1rem 0;
@@ -632,6 +631,9 @@
     border-top: 1px solid var(--border-color);
     margin: 2rem 0;
   }
+  .markdown footnotes {
+    font-family: var(--font-inter);
+  }
 }
 html {
   scrollbar-gutter: stable;
@@ -639,7 +641,6 @@ html {
 @layer base {
   a {
     color: var(--color-indigo-400);
-    text-decoration-line: underline;
     text-underline-offset: 1px;
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -647,6 +648,11 @@ html {
     &:hover {
       @media (hover: hover) {
         color: var(--color-indigo-300);
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
       }
     }
   }

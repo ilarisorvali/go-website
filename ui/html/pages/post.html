@@ -14,7 +14,7 @@
             {{.Item.Meta.Title}}
         </h1>
 
-        <div class="md:text-left text-zinc-500">
+        <div class="md:text-left text-neutral-400">
             <time>{{.Item.Meta.Date.Format "02 Jan 2006"}}</time>
         </div>
 
@@ -23,7 +23,7 @@
 
         {{if .Item.Content}}
         <div>
-            <article class="font-roboto w-full markdown a:text-indigo-500 max-w-full overflow-x-auto">
+            <article class="w-full markdown max-w-full overflow-x-auto">
                 {{.Item.Content}}
             </article>
         </div>

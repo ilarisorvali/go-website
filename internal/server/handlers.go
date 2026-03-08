@@ -48,3 +48,8 @@ func (app *application) kitchen(w http.ResponseWriter, r *http.Request) {
 	}
 	app.render(w, r, http.StatusOK, "kitchen.html", data)
 }
+
+func (app *application) feed(w http.ResponseWriter, r *http.Request) {
+	feed := app.generateAtomFeed()
+	w.Write([]byte(feed))
+}

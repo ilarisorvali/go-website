@@ -38,7 +38,7 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 
 	w.WriteHeader(status)
 
-	// Write contents of buffer to http.ResponseWriter
+	// Write contents of HTML byte buffer to http.ResponseWriter
 	buf.WriteTo(w)
 }
 

@@ -2,6 +2,13 @@
 
 {{define "content"}}
 
+<div class="flex items-center justify-between w-full mb-8">
+    <h1 class="md:text-xl font-semibold">All posts</h1>
+    <span class="md:text-xl">
+      Atom <a href="/feed">feed</a> for posts
+    </span>
+</div>
+
 <div>
   <!-- Posts -->
   {{if .Items}}
@@ -10,7 +17,7 @@
         {{with .Meta}}
         <li class="flex gap-4 md:text-xl">
 
-          <span class="w-32 shrink-0 tabular-nums">
+          <span class="shrink-0 tabular-nums">
             {{.Date.Format "02 Jan 2006"}}
           </span>
 
