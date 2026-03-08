@@ -15,6 +15,7 @@ type application struct {
 	templateCache map[string]*template.Template
 	contentCache  *models.ContentCache
 	imageDir      *string
+	atomFeed      *[]byte
 }
 
 func RunServer() error {
@@ -48,6 +49,8 @@ func RunServer() error {
 		contentCache:  cache,
 		imageDir:      imageDir,
 	}
+
+	app.generateAtomFeed()
 
 	srv := &http.Server{
 		Addr:    *addr,

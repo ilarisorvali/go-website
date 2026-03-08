@@ -10,7 +10,7 @@ import (
 
 const url = "https://sorvali.net/posts/"
 
-func (app *application) generateAtomFeed() string {
+func (app *application) generateAtomFeed() {
 	now := time.Now()
 	feed := &feeds.Feed{
 		Title:   "sorvali.net posts",
@@ -41,5 +41,8 @@ func (app *application) generateAtomFeed() string {
 		log.Fatal(err)
 	}
 	fmt.Println(atom)
-	return atom
+
+	atomBytes := []byte(atom)
+
+	app.atomFeed = &atomBytes
 }

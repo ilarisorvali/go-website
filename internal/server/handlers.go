@@ -50,6 +50,5 @@ func (app *application) kitchen(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) feed(w http.ResponseWriter, r *http.Request) {
-	feed := app.generateAtomFeed()
-	w.Write([]byte(feed))
+	w.Write(*app.atomFeed)
 }
