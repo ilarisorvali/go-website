@@ -50,5 +50,7 @@ func (app *application) kitchen(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) feed(w http.ResponseWriter, r *http.Request) {
+	// Set response headers for readers
+	w.Header().Set("Content-Type", "application/atom+xml; charset=utf-8")
 	w.Write(*app.atomFeed)
 }

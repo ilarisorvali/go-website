@@ -26,7 +26,7 @@ func (app *application) addRoutes() *http.ServeMux {
 	mux.HandleFunc("/posts/{slug}", app.viewPost)
 	mux.HandleFunc("/kitchen/{$}", app.kitchen)
 	mux.HandleFunc("/kitchen/{slug}", app.viewPost)
-	mux.HandleFunc("/feed", app.feed)
+	mux.HandleFunc("/atom.xml", app.feed)
 
 	return mux
 
