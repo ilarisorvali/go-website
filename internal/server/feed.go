@@ -25,6 +25,7 @@ func (app *application) generateAtomFeed() {
 
 		entry := &feeds.Item{
 			Title:       item.Meta.Title,
+			Id:          item.Meta.Slug,
 			Link:        &feeds.Link{Href: link},
 			Description: item.Meta.Description,
 			Created:     item.Meta.Date.Time,
