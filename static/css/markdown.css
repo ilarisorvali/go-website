@@ -115,8 +115,18 @@
 
   /* Images */
   .markdown img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     border-radius: 0.75rem;
-    margin: 1.5rem 0;
+    margin: 2rem auto;
+  }
+
+  /* wide images */
+  .markdown img.wide {
+    width: 120%;
+    max-width: 120%;
+    margin-left: -10%;
   }
 
   .markdown figure {
