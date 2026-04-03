@@ -19,7 +19,6 @@ import (
 func ParseMDToContent(file []byte) (*ContentItem, error) {
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
-
 			figure.Figure,
 			extension.GFM,
 			extension.Footnote,
