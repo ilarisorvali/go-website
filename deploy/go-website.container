@@ -1,12 +1,12 @@
 [Unit]
 Description=Personal website
 After=network-online.target
-Requires=go-website-build.service
 
 [Container]
-Image=go-website.build
+Image=ghcr.io/ilarisorvali/go-website:latest
 PublishPort=127.0.0.1:9000:9000
-Volume=%h/path/to/markdown/content:/app/markdown:Z
+Volume=%h/blog:/app/markdown:Z
+Volume=%h/blog/images:/app/images:Z
 
 [Service]
 Restart=always
