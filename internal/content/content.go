@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 
 	fm "github.com/adrg/frontmatter"
-	figure "github.com/ilarisorvali/goldmark-figure"
+	figure "github.com/ilarisorvali/goldmark-picfig"
 	"github.com/yuin/goldmark"
 	hl "github.com/yuin/goldmark-highlighting/v2"
 	"github.com/yuin/goldmark/extension"
@@ -19,7 +19,7 @@ import (
 func ParseMDToContent(file []byte) (*ContentItem, error) {
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
-			figure.Figure,
+			figure.PicFig,
 			extension.GFM,
 			extension.Footnote,
 			hl.NewHighlighting(

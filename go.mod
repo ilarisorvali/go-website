@@ -1,12 +1,12 @@
 module github.com/ilarisorvali/go-website
 
-go 1.25.5
+go 1.26.5
 
 require (
 	github.com/adrg/frontmatter v0.2.0
 	github.com/gorilla/feeds v1.2.0
-	github.com/ilarisorvali/goldmark-figure v0.0.0-20260330203753-8b5db0d3c987
-	github.com/yuin/goldmark v1.7.11
+	github.com/ilarisorvali/goldmark-picfig v0.0.0-20260403192635-a0c74b9db696
+	github.com/yuin/goldmark v1.8.2
 	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20230729083705-37449abec8cc
 )
 
