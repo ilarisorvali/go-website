@@ -27,5 +27,5 @@ EXPOSE 8080
 USER 1000:1000
 
 #This can be overridden from a systemd Quadlet
-#Exec=/app/go-website --flag=/app/config.yaml
+#Exec=/app/go-website 
 CMD [ "./go-website", "--contentdir", "./markdown"]
