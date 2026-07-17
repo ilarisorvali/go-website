@@ -22,6 +22,7 @@ func (app *application) addRoutes() *http.ServeMux {
 	//{$} is a catch-all preventer in go servemux,
 	//ie. all unknown subtrees don't match to /
 	mux.HandleFunc("/{$}", app.home)
+	mux.HandleFunc("/about", app.about)
 	mux.HandleFunc("/posts/{$}", app.posts)
 	mux.HandleFunc("/posts/{slug}", app.viewPost)
 	mux.HandleFunc("/kitchen/{$}", app.kitchen)

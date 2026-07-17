@@ -12,18 +12,21 @@
 <div>
   <!-- Posts -->
   {{if .Items}}
-    <ul class="space-y-3">
+    <ul class="space-y-2">
       {{range .Items}}
         {{with .Meta}}
-        <li class="flex gap-4 md:text-xl">
-
-          <span class="shrink-0 tabular-nums">
-            {{.Date.Format "02 Jan 2006"}}
-          </span>
-
-          <a href="{{.Slug}}">
-            {{.Title}}
+        <li class="gap-4 md:text-xl">
+          <a href="{{.Slug}}"
+              > {{.Title}}
           </a>
+
+          <div class="text-sm">
+            {{.Date.Format "02 Jan 2006"}}
+          </div>
+
+          <p class="text-sm">
+              {{.Description}}
+          </p>
 
         </li>
         {{end}}

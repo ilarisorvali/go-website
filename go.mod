@@ -14,5 +14,6 @@ require (
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/alecthomas/chroma/v2 v2.23.1 // indirect
 	github.com/dlclark/regexp2 v1.11.5 // indirect
+	github.com/mangoumbrella/goldmark-figure v1.4.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 )

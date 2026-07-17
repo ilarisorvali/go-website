@@ -3,10 +3,9 @@
 @layer components {
   .markdown {
     --body-color: var(--color-neutral-200);
-    --heading-color: var(--color-neutral-200);
     --muted-color: var(--color-neutral-400);
-    --blockquote-color: var(--color-neutral-800);
-    --border-color: var(--color-neutral-200);
+    --blockquote-color: var(--color-neutral-500);
+    --border-color: var(--color-neutral-900);
     --link-color: var(--color-indigo-500);
     --link-hover-color: var(--color-indigo-400);
     --code-bg: var(--color-neutral-100);
@@ -142,7 +141,6 @@
   .markdown figcaption {
     margin-top: 0.75rem;
     font-size: 0.875rem;
-    color: var(--muted-color);
   }
 
   /*.markdown li:has(input[type="checkbox"]) {

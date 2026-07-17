@@ -9,13 +9,18 @@ import (
 const homePath = "./markdown/static/home.md"
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	data, _ := models.LoadSingleFile(homePath)
 
-	app.render(w, r, http.StatusOK, "home.html", data)
+	//empty content data struct passed as no data is needed on the page
+	app.render(w, r, http.StatusOK, "home.html", models.TemplateData{})
+}
+
+func (app *application) about(w http.ResponseWriter, r *http.Request) {
+
+	//empty content data struct passed as no data is needed on the page
+	app.render(w, r, http.StatusOK, "home.html", models.TemplateData{})
 }
 
 func (app *application) posts(w http.ResponseWriter, r *http.Request) {
-	//tags := []string{"post"}
 
 	data := models.TemplateData{
 		Items: app.contentCache.Blog,

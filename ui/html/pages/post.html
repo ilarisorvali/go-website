@@ -14,12 +14,9 @@
             {{.Item.Meta.Title}}
         </h1>
 
-        <div class="md:text-left text-neutral-400">
+        <div class="md:text-left text-neutral-900">
             <time>{{.Item.Meta.Date.Format "02 Jan 2006"}}</time>
         </div>
-
-        {{template "horline"}}
-
 
         {{if .Item.Content}}
         <div>

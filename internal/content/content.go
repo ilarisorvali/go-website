@@ -6,8 +6,9 @@ import (
 	"os"
 	"path/filepath"
 
+	figure "github.com/mangoumbrella/goldmark-figure"
+
 	fm "github.com/adrg/frontmatter"
-	figure "github.com/ilarisorvali/goldmark-picfig"
 	"github.com/yuin/goldmark"
 	hl "github.com/yuin/goldmark-highlighting/v2"
 	"github.com/yuin/goldmark/extension"
@@ -19,12 +20,11 @@ import (
 func ParseMDToContent(file []byte) (*ContentItem, error) {
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
-			figure.PicFig,
+			figure.Figure,
 			extension.GFM,
 			extension.Footnote,
 			hl.NewHighlighting(
-				// neat built-in highlighting styles
-				hl.WithStyle("dracula"),
+				hl.WithStyle("nord"),
 			),
 		),
 	)
