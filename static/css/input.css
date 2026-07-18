@@ -7,6 +7,6 @@ html {
 
 @layer base {
   a {
-    @apply text-olive-300 hover:text-indigo-300 transition-colors underline-offset-1 hover:underline;
+    @apply text-indigo-400 hover:text-indigo-300 transition-colors underline-offset-1 hover:underline;
   }
 }
