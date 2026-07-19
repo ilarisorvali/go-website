@@ -17,7 +17,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 func (app *application) about(w http.ResponseWriter, r *http.Request) {
 
 	//empty content data struct passed as no data is needed on the page
-	app.render(w, r, http.StatusOK, "home.html", models.TemplateData{})
+	app.render(w, r, http.StatusOK, "about.html", models.TemplateData{})
 }
 
 func (app *application) posts(w http.ResponseWriter, r *http.Request) {
