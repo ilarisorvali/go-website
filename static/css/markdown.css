@@ -4,7 +4,7 @@
   .markdown {
     --body-color: var(--color-neutral-200);
     --muted-color: var(--color-neutral-400);
-    --blockquote-color: var(--color-neutral-500);
+    --blockquote-color: var(--color-zinc-700);
     --border-color: var(--color-neutral-900);
     --link-color: var(--color-indigo-500);
     --link-hover-color: var(--color-indigo-400);
