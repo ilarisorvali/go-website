@@ -6,8 +6,6 @@ import (
 	models "github.com/ilarisorvali/go-website/internal/content"
 )
 
-const homePath = "./markdown/static/home.md"
-
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 	//empty content data struct passed as no data is needed on the page

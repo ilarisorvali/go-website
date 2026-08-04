@@ -26,10 +26,11 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 		return
 	}
 
+	// placeholder buffer
 	buf := new(bytes.Buffer)
 
-	// Write template to placeholder buffer instead of
-	// http.Responsewriter to catch ExecuteTemplate() errors
+	// Write template to placeholder buffer instead of directly
+	// to http.Responsewriter to catch ExecuteTemplate() errors
 	err := ts.ExecuteTemplate(buf, "base", data)
 	if err != nil {
 		app.serverError(w, r, err)

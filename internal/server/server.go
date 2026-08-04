@@ -11,7 +11,7 @@ import (
 )
 
 type application struct {
-	logger        *slog.Logger
+	logger        *slog.Logger //universal logger that can be called wherever application is present
 	templateCache map[string]*template.Template
 	contentCache  *models.ContentCache
 	imageDir      *string
@@ -36,8 +36,10 @@ func RunServer() error {
 		logger.Error(err.Error())
 		os.Exit(1)
 	}
+
 	// init content cache for application, check for errors
 	cache, err := newContentCache(contentDir)
+
 	if err != nil {
 		logger.Error(err.Error())
 		os.Exit(1)
