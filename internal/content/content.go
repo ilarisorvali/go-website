@@ -1,10 +1,11 @@
-package models
+package content
 
 import (
 	"bytes"
 	"html/template"
 	"os"
 	"path/filepath"
+	"sync"
 
 	figure "github.com/mangoumbrella/goldmark-figure"
 
@@ -65,7 +66,10 @@ func LoadContentFiles(dirPath string) (map[string]*ContentItem, error) {
 	//Init an empty map
 	data := map[string]*ContentItem{}
 
-	files, _ := os.ReadDir(dirPath)
+	files, err := os.ReadDir(dirPath)
+	if err != nil {
+		return data, err
+	}
 
 	for _, file := range files {
 		if filepath.Ext(file.Name()) != ".md" {
@@ -95,18 +99,66 @@ func LoadContentFiles(dirPath string) (map[string]*ContentItem, error) {
 
 }
 
-// TODO add error handling
-func LoadSingleFile(filepath string) (TemplateData, error) {
-	data := TemplateData{}
+func LoadContentFilesParallel(dirPath string) (map[string]*ContentItem, error) {
+	const WORKERS = 8
+	data := make(map[string]*ContentItem)
 
-	file, _ := os.ReadFile(filepath)
-
-	item, err := ParseMDToContent(file)
+	files, err := os.ReadDir(dirPath)
 	if err != nil {
 		return data, err
 	}
 
-	data.Item = item
+	// Jobs are files that need to be processed.
+	mdjobs := make(chan os.DirEntry)
+
+	// processed markdown files are sent to a channel, because
+	// writing to a map in parallel is messy
+	processedMd := make(chan *ContentItem)
+
+	var wg sync.WaitGroup
+
+	// add files to job channel
+	go func() {
+		for _, file := range files {
+			if filepath.Ext(file.Name()) == ".md" {
+				mdjobs <- file
+			}
+		}
+		// close the channel
+		close(mdjobs)
+	}()
+
+	for range WORKERS {
+		wg.Go(func() {
+			for file := range mdjobs {
+				fullPath := filepath.Join(dirPath, file.Name())
+				//fmt.Println(fullPath)
+
+				md, err := os.ReadFile(fullPath)
+				if err != nil {
+					continue
+				}
+
+				item, err := ParseMDToContent(md)
+				if err != nil {
+					continue
+				}
+
+				processedMd <- item
+			}
+		})
+	}
+
+	// run wg.Wait() inside a goroutine so the main thread doesn't get blocked
+	go func() {
+		wg.Wait()
+		close(processedMd)
+	}()
+
+	// get results to a map
+	for item := range processedMd {
+		data[item.Meta.Slug] = item
+	}
 
 	return data, nil
 }
