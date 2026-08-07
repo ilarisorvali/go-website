@@ -100,9 +100,11 @@ func LoadContentFiles(dirPath string) (map[string]*ContentItem, error) {
 }
 
 func LoadContentFilesParallel(dirPath string) (map[string]*ContentItem, error) {
-	const WORKERS = 8
+	// amount of worker threads
+	const WORKERS_AMOUNT = 8
 	data := make(map[string]*ContentItem)
 
+	// read all of the md file paths from md directory
 	files, err := os.ReadDir(dirPath)
 	if err != nil {
 		return data, err
@@ -115,6 +117,7 @@ func LoadContentFilesParallel(dirPath string) (map[string]*ContentItem, error) {
 	// writing to a map in parallel is messy
 	processedMd := make(chan *ContentItem)
 
+	// waitgroup for workers
 	var wg sync.WaitGroup
 
 	// add files to job channel
@@ -128,7 +131,9 @@ func LoadContentFilesParallel(dirPath string) (map[string]*ContentItem, error) {
 		close(mdjobs)
 	}()
 
-	for range WORKERS {
+	// start the worker pool of WORKERS_AMOUNT size
+	// each worker gets md files (paths) from the mdjobs channel
+	for range WORKERS_AMOUNT {
 		wg.Go(func() {
 			for file := range mdjobs {
 				fullPath := filepath.Join(dirPath, file.Name())
