@@ -8,7 +8,7 @@ import (
 )
 
 func BenchmarkLoadContentFiles(b *testing.B) {
-	for count := 10; count <= 1000; count += 10 {
+	for count := 5; count <= 50; count += 5 {
 		b.Run(strconv.Itoa(count), func(b *testing.B) {
 			dir := createBenchmarkContentDir(b, count)
 
@@ -25,7 +25,7 @@ func BenchmarkLoadContentFiles(b *testing.B) {
 }
 
 func BenchmarkLoadContentFilesParallel(b *testing.B) {
-	for count := 10; count <= 1000; count += 10 {
+	for count := 5; count <= 50; count += 5 {
 		b.Run(strconv.Itoa(count), func(b *testing.B) {
 			dir := createBenchmarkContentDir(b, count)
 
