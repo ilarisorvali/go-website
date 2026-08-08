@@ -135,6 +135,7 @@ func LoadContentFilesParallel(dirPath string) (map[string]*ContentItem, error) {
 	// each worker gets md files (paths) from the mdjobs channel
 	for range WORKERS_AMOUNT {
 		wg.Go(func() {
+			// range over the channel to get jobs for the worker
 			for file := range mdjobs {
 				fullPath := filepath.Join(dirPath, file.Name())
 				//fmt.Println(fullPath)
