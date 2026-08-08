@@ -8,10 +8,10 @@ import (
 // Returns an http handler containing the routes
 
 func (app *application) addRoutes() *http.ServeMux {
-	// new mux, http request multiplexer
+	// new mux, http request multiplexer (router)
 	mux := http.NewServeMux()
 
-	// make images available, longer route must come before the shorter
+	// make images available with a FileServer route
 	mux.Handle("GET /images/", http.StripPrefix("/images/",
 		http.FileServer(http.Dir(*app.imageDir))))
 

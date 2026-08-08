@@ -45,7 +45,7 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 
 // TODO add error handling
 func newContentCache(dir *string) (*models.ContentCache, error) {
-	items, err := models.LoadContentFiles(*dir)
+	items, err := models.LoadContentFilesParallel(*dir)
 	if err != nil {
 		return nil, err
 	}
