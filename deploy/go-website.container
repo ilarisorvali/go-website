@@ -5,8 +5,9 @@ After=network-online.target
 [Container]
 Image=ghcr.io/ilarisorvali/go-website:latest
 PublishPort=127.0.0.1:9000:9000
-Volume=%h/blog:/app/markdown:Z
-Volume=%h/blog/images:/app/images:Z
+Volume=%h/saitti/blog:/app/markdown:Z
+Volume=%h/saitti/blog/images:/app/images:Z
+Pull=newer
 
 [Service]
 Restart=always
