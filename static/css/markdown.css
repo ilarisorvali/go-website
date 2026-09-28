@@ -9,7 +9,7 @@
     --link-color: var(--color-indigo-400);
     --link-hover-color: var(--color-indigo-400);
     --code-bg: var(--color-neutral-100);
-    font-family: var(--font-merriweather);
+    font-family: var(--font-serif);
     line-height: 1.7;
     font-size: var(--text-lg);
   }
