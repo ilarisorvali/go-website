@@ -1,18 +1,16 @@
 module github.com/ilarisorvali/go-website
 
-go 1.26.5
+go 1.27.1
 
 require (
-	github.com/adrg/frontmatter v0.2.0
 	github.com/gorilla/feeds v1.2.0
-	github.com/mangoumbrella/goldmark-figure v1.4.0
-	github.com/yuin/goldmark v1.8.2
-	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20230729083705-37449abec8cc
+	github.com/yuin/goldmark-highlighting/v3 v3.1.0
+	github.com/yuin/goldmark-meta/v2 v2.0.2
+	github.com/yuin/goldmark/v2 v2.1.6
+	go.yaml.in/yaml/v4 v4.0.0-rc.6
 )
 
 require (
-	github.com/BurntSushi/toml v0.3.1 // indirect
-	github.com/alecthomas/chroma/v2 v2.23.1 // indirect
-	github.com/dlclark/regexp2 v1.11.5 // indirect
-	gopkg.in/yaml.v2 v2.3.0 // indirect
+	github.com/alecthomas/chroma/v3 v3.0.0-alpha.5 // indirect
+	github.com/dlclark/regexp2/v2 v2.8.0 // indirect
 )
