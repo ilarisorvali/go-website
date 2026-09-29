@@ -2,63 +2,66 @@ package content
 
 import (
 	"bytes"
-	"html/template"
+	temp "html/template"
 	"os"
 	"path/filepath"
 	"sync"
 
-	figure "github.com/mangoumbrella/goldmark-figure"
-
-	fm "github.com/adrg/frontmatter"
-	"github.com/yuin/goldmark"
-	hl "github.com/yuin/goldmark-highlighting/v2"
-	"github.com/yuin/goldmark/extension"
-	"github.com/yuin/goldmark/parser"
+	highlighting "github.com/yuin/goldmark-highlighting/v3"
+	meta "github.com/yuin/goldmark-meta/v2"
+	"github.com/yuin/goldmark/v2/ast"
+	"github.com/yuin/goldmark/v2/parser"
+	"github.com/yuin/goldmark/v2/renderer/html"
+	"go.yaml.in/yaml/v4"
 )
 
 // Parses a post markdown file into metadata and HTML
 // Returns metadata and HTML in a Post struct
-func ParseMDToContent(file []byte) (*ContentItem, error) {
-	markdown := goldmark.New(
-		goldmark.WithExtensions(
-			figure.Figure,
-			extension.GFM,
-			extension.Footnote,
-			hl.NewHighlighting(
-				hl.WithStyle("nord"),
+func ParseMDToContent(source []byte) (*ContentItem, error) {
+	var buf bytes.Buffer
+	var frontMatter FrontMatter
+
+	doc := parser.New(
+		parser.WithExtensions(
+			meta.Parser,
+			highlighting.Parser,
+		),
+	).Parse(source)
+
+	mData := doc.(*ast.Document).Metadata()
+
+	data, err := yaml.Marshal(mData)
+	if err != nil {
+		panic(err)
+	}
+
+	if err := yaml.Unmarshal(data, &frontMatter); err != nil {
+		panic(err)
+	}
+
+	// HTML renderer
+	r := html.New(
+		html.WithExtensions(
+			highlighting.NewHTMLRenderer(
+				highlighting.WithStyle("nord"),
 			),
 		),
 	)
 
-	//Get the yaml metadata part from MD file
-	//Unmarshal metadata into Frontmatter struct
-	var meta FrontMatter
-
-	rest, err := fm.Parse(bytes.NewReader(file), &meta)
-	if err != nil {
-		return nil, err
+	if err := r.Render(&buf, source, doc); err != nil {
+			panic(err)
 	}
 
-	// Parse the rest of the file into html content
-	// First create memory buffer that implements io.Writer
-	// Context is needed to hold state during conversion (footnotes, links, etc.)
-	var buf bytes.Buffer
-	context := parser.NewContext()
+	htmlTemplate := temp.HTML(buf.String())
 
-	// Convert rest to HTML into buf with parser context
-	if err := markdown.Convert(rest, &buf, parser.WithContext(context)); err != nil {
-		return nil, err
-	}
-	htmlTemplate := template.HTML(buf.String())
+	println(htmlTemplate)
 
-	// Final ContentItem
 	item := ContentItem{
-		Meta:    meta,
+		Meta:	frontMatter,
 		Content: htmlTemplate,
 	}
 
 	return &item, nil
-
 }
 
 // TODO add error handling
